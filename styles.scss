@@ -1,6 +1,26 @@
 $sans-serif: "Helvetica Nueue", Helvetica, Arial, sans-serif; 
 
+@mixin desktop-only() {
+    @media only screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin mobile-tablet() {
+    @media only screen and (max-width: 1023px) {
+        @content;
+    }
+}
+
 body{
     font-family: $sans-serif;
     font-weight: bold;
+    @include desktop-only(){
+        margin-left: 320px;
+        margin-right: 320px;
+    }
+    @include mobile-tablet(){
+        margin-left: 16px;
+        margin-right: 16px;
+    }
 }

@@ -1,11 +1,11 @@
 // AVERAGE NUMBER OF REVIEWS PER HOST (Y) VS HOST SINCE (X)
 d3.csv("data/csv/listings.csv", function(data) {
     
-    //avg number of reviews per year
+    //avg number of reviews 
     var avg_reviews = [];
 
     var years = [];
-    // 2008 ---> 2017 placed in years
+    // 2008 ---> 2017 correspond to 0 ---> 9 in array
     for(let i = 0; i < 10; i++){
         years.push(2008 + i); 
         avg_reviews.push(null);   
@@ -19,22 +19,24 @@ d3.csv("data/csv/listings.csv", function(data) {
                 if(avg_reviews[k] == null){
                     avg_reviews[k]=[num_reviews,1];
                 }else{
+                    /* 
+                    keeping track of sum and number of data points to calculate
+                    the average number of reviews later
+                    */
                     avg_reviews[k]=[avg_reviews[k][0]+num_reviews, avg_reviews[k][1]+1];
                 }
                 break;
             }
         }
     }
-    console.log(avg_reviews);
-    
     
     // calculate average number of reviews per host for each year
+    // where each spot in the array corresponds to the year
     for(let l = 0; l < 10; l++){
         avg_reviews[l] = Math.round(avg_reviews[l][0] / avg_reviews[l][1]);
     }
 
-    console.log(avg_reviews);
-
+    // display a bar graph
     var ctx = document.getElementById('calendar-chart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -51,7 +53,22 @@ d3.csv("data/csv/listings.csv", function(data) {
         },
     
         // Configuration options go here
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Average Number of Reviews Per Host'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Host Since Year X'
+                    }
+                }]
+            }     
+        }
     });
     
 });
