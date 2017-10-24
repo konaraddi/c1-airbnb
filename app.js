@@ -1,4 +1,4 @@
-// AVERAGE NUMBER OF REVIEWS PER HOST (Y) VS HOST SINCE (X)
+// AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR X
 d3.csv("data/csv/listings.csv", function(data) {
     
     //avg number of reviews 
@@ -37,7 +37,7 @@ d3.csv("data/csv/listings.csv", function(data) {
     }
 
     // display a bar graph
-    var ctx = document.getElementById('calendar-chart').getContext('2d');
+    var ctx = document.getElementById('avg-rev-year-chart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'bar',
@@ -54,6 +54,9 @@ d3.csv("data/csv/listings.csv", function(data) {
     
         // Configuration options go here
         options: {
+            legend:{
+                display: false
+            },
             scales: {
                 yAxes: [{
                     scaleLabel: {
@@ -70,5 +73,56 @@ d3.csv("data/csv/listings.csv", function(data) {
             }     
         }
     });
+});
+
+// REVIEW RATINGS vs SQUARE FEET
+d3.csv("data/csv/listings.csv", function(data){
+
+    var squareft_ratings = [];
+    for(let i = 0; i < data.length; i++){
+        let x = Number(data[i]["square_feet"]);
+        let y = Number(data[i]["review_scores_rating"]);
+        if(x > 0 && y > 0){
+            squareft_ratings.push({x, y});
+        }
+    }
+
+    //display a scatter plot
+    var ctx = document.getElementById('rating-squareft-plot').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'scatter',
     
+        // The data for our dataset
+        data: {
+            datasets: [{
+                label: 'Scatter Dataset',
+                fill: false,
+                showLine: false,
+                backgroundColor:'rgb(68,108,179)',
+                data: squareft_ratings
+            }]
+        },
+    
+        // Configuration options go here
+        options: {
+            legend:{
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Review Ratings Score'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Square Feet'
+                    }
+                }]
+            }     
+        }
+    });
 });

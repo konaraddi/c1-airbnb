@@ -1,6 +1,7 @@
 body {
-  font-family: "Helvetica Nueue", Helvetica, Arial, sans-serif;
-  font-weight: bold; }
+  font-family: "Helvetica Nueue", Helvetica, Arial, sans-serif; }
+  body h* {
+    font-weight: bold; }
   @media only screen and (min-width: 1024px) {
     body {
       margin-left: 320px;
