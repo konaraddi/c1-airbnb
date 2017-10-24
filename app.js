@@ -82,7 +82,9 @@ d3.csv("data/csv/listings.csv", function(data){
     for(let i = 0; i < data.length; i++){
         let x = Number(data[i]["square_feet"]);
         let y = Number(data[i]["review_scores_rating"]);
-        if(x > 0 && y > 0){
+
+        // only consider places with more than 10 square ft and more than 0% ratings
+        if(x > 10 && y > 0){
             squareft_ratings.push({x, y});
         }
     }

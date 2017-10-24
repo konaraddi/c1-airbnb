@@ -1,0 +1,15 @@
+@import "bulma/bulma";
+
+@import "variables";
+@import "mixins";
+
+section.body{
+    @include desktop-only(){
+        margin-left: 320px;
+        margin-right: 320px;
+    }
+    @include mobile-tablet(){
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}

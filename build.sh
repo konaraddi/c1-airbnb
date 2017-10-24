@@ -1,1 +1,1 @@
-sass styles.scss:styles.css --sourcemap=none
+sass sass/styles.scss:styles.css --sourcemap=none

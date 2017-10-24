@@ -7,6 +7,37 @@
     <!--for scaling across various devices-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 
+    <!--stylesheet-->
+    <link rel="stylesheet" type="text/css" href="styles.css"> 
+
+</head>
+<body>
+    <section id="loading-screen" class="hero is-light is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    give us a few moments...
+                </h1>
+                <progress id="loading-bar" class="progress is-danger" value="0" max="100">90%</progress>
+            </div>
+        </div>
+    </section>
+    <script>
+        var loading_screen = document.getElementById("loading-screen");
+        var progress = document.getElementById("loading-bar");
+        var width = 1;
+        var x = setInterval(frame, 10);
+      
+        function frame() {
+          if (width >= 100) {
+            loading_screen.style.display = 'none';
+          } else {
+            width++;
+            progress.value = width
+          }
+        }
+    </script>
+
     <!--for handling data (using D3)-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     
@@ -16,18 +47,30 @@
     <!--link the functionality written in JS-->
     <script defer type="text/javascript" src="app.js"></script>
 
-    <!--stylesheet-->
-    <link rel="stylesheet" type="text/css" href="styles.css">  
-</head>
-<body>
-    <h1>Avg. # of Reviews Per Host vs Year Since Host</h1>
-    <canvas id="avg-rev-year-chart"></canvas>
-    <p>You know what they say; the best time to be an Airbnb host was 9 years ago.</p>
-    <h1>Review Score Rating vs Square Feet</h1>
-    <canvas id="rating-squareft-plot"></canvas>
-    <p>
-        You don't need the largest place to be a successful Airbnb host!
-        In fact, most hosts don't specify their square feet.
-    </p>
+    <section id="app">
+        <section class="hero is-danger">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                <h1 class="title is-spaced">
+                    Thinking about being an Airbnb Host?
+                </h1>
+                <h2 class="subtitle">
+                    Checkout the data below and learn about hosting.
+                </h2>
+                </div>
+            </div>
+        </section>
+        <section class="body content">
+            <h2>Avg. # of Reviews Per Host vs Year Since Host</h1>
+            <canvas id="avg-rev-year-chart" class="box"></canvas>
+            <p>You know what they say; the best time to be an Airbnb host was 9 years ago.</p>
+            <h2>Review Score Rating vs Square Feet</h1>
+            <canvas id="rating-squareft-plot" class="box"></canvas>
+            <p>
+                You don't need the largest place to be a successful Airbnb host!
+                In fact, most hosts don't specify their square feet.
+            </p>
+        </section>
+    </section>
 </body>
 </html>
