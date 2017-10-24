@@ -128,3 +128,10 @@ d3.csv("data/csv/listings.csv", function(data){
         }
     });
 });
+
+// PRICE vs BEDROOMS
+d3.csv("data/csv/listings.csv", function(data){
+
+    console.log(data[26]["bedrooms"]);
+
+});
