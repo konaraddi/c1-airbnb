@@ -132,6 +132,50 @@ d3.csv("data/csv/listings.csv", function(data){
 // PRICE vs BEDROOMS
 d3.csv("data/csv/listings.csv", function(data){
 
-    console.log(data[26]["bedrooms"]);
+    var bedrooms_price= [];
+    for(let i = 0; i < data.length; i++){
+        let x = Number(data[i]["bedrooms"])
+        let y = Number(data[i]["price"].substring(1,data[i]["price"].length));
+        bedrooms_price.push({x, y});
+    }
+
+    //display a scatter plot
+    var ctx = document.getElementById('bedrooms-price-plot').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'scatter',
+    
+        // The data for our dataset
+        data: {
+            datasets: [{
+                label: 'Scatter Dataset',
+                fill: false,
+                showLine: false,
+                backgroundColor:'rgb(68,108,179)',
+                data: bedrooms_price
+            }]
+        },
+    
+        // Configuration options go here
+        options: {
+            legend:{
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Price'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Bedrooms'
+                    }
+                }]
+            }     
+        }
+    });
 
 });
