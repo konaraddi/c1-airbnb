@@ -31,9 +31,11 @@
         function frame() {
           if (width >= 100) {
             loading_screen.style.display = 'none';
+            var app = document.getElementById("app");
+            app.style.display = "block";
           } else {
             width++;
-            progress.value = width
+            progress.value = width;
           }
         }
     </script>
@@ -47,7 +49,7 @@
     <!--link the functionality written in JS-->
     <script defer type="text/javascript" src="app.js"></script>
 
-    <section id="app">
+    <section id="app" style="display: none;">
         <section class="hero is-danger">
             <div class="hero-body">
                 <div class="container has-text-centered">
