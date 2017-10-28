@@ -1,6 +1,17 @@
-// AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR X
-d3.csv("data/csv/listings.csv", function(data) {
-    
+Papa.parse("http://localhost:4000/data/csv/listings.csv", {
+    header: true,
+    download: true,
+    dynamicTyping: true,
+	complete: function(results) {
+        var data = results["data"];
+        constructChart1(data);
+        constructChart2(data);
+        constructChart3(data);
+	}
+});
+
+// AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR
+function constructChart1(data){
     //avg number of reviews 
     var avg_reviews = [];
 
@@ -11,7 +22,8 @@ d3.csv("data/csv/listings.csv", function(data) {
         avg_reviews.push(null);   
     }
 
-    for(let j = 0; j < data.length; j++){
+    // Papa Parse adds an empty row to the data, hence the "data.length - 1"
+    for(let j = 0; j < data.length - 1; j++){
         let year = Number(data[j]["host_since"].substring(0,4));
         for(let k = 0; k < 10; k++){
             if(year == (2008 + k)){
@@ -73,13 +85,14 @@ d3.csv("data/csv/listings.csv", function(data) {
             }     
         }
     });
-});
+}
+
 
 // REVIEW RATINGS vs SQUARE FEET
-d3.csv("data/csv/listings.csv", function(data){
+function constructChart2(data){
 
     var squareft_ratings = [];
-    for(let i = 0; i < data.length; i++){
+    for(let i = 0; i < data.length - 1; i++){
         let x = Number(data[i]["square_feet"]);
         let y = Number(data[i]["review_scores_rating"]);
 
@@ -127,13 +140,13 @@ d3.csv("data/csv/listings.csv", function(data){
             }     
         }
     });
-});
+}
 
 // PRICE vs BEDROOMS
-d3.csv("data/csv/listings.csv", function(data){
+function constructChart3(data){
 
     var bedrooms_price= [];
-    for(let i = 0; i < data.length; i++){
+    for(let i = 0; i < data.length - 1; i++){
         let x = Number(data[i]["bedrooms"])
         let y = Number(data[i]["price"].substring(1,data[i]["price"].length));
         bedrooms_price.push({x, y});
@@ -178,4 +191,4 @@ d3.csv("data/csv/listings.csv", function(data){
         }
     });
 
-});
+}
