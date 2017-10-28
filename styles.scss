@@ -1,20 +1,20 @@
-@import "./node_modules/bulma/sass/utilities/_all.sass";
-@import "./node_modules/bulma/sass/base/_all.sass";
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/_all.sass";
 
-@import "./node_modules/bulma/sass/elements/box.sass";
-@import "./node_modules/bulma/sass/elements/button.sass";
-@import "./node_modules/bulma/sass/elements/container.sass";
-@import "./node_modules/bulma/sass/elements/content.sass";
-@import "./node_modules/bulma/sass/elements/form.sass";
-@import "./node_modules/bulma/sass/elements/progress.sass";
-@import "./node_modules/bulma/sass/elements/title.sass";
+@import "bulma/sass/elements/box.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/container.sass";
+@import "bulma/sass/elements/content.sass";
+@import "bulma/sass/elements/form.sass";
+@import "bulma/sass/elements/progress.sass";
+@import "bulma/sass/elements/title.sass";
 
-@import "./node_modules/bulma/sass/grid/columns.sass";
+@import "bulma/sass/grid/columns.sass";
 
-@import "./node_modules/bulma/sass/components/level.sass";
+@import "bulma/sass/components/level.sass";
 
-@import "./node_modules/bulma/sass/layout/hero.sass";
-@import "./node_modules/bulma/sass/layout/section.sass";
+@import "bulma/sass/layout/hero.sass";
+@import "bulma/sass/layout/section.sass";
 
 @import "_sass/variables";
 @import "_sass/mixins";
