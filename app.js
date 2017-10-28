@@ -1,15 +1,70 @@
-Papa.parse("http://localhost:4000/data/csv/listings.csv", {
+// contains data from listings.csv
+var data = null;
+
+// grab data from CSV file and build charts from it
+Papa.parse("./data/csv/listings.csv", {
     header: true,
     download: true,
     dynamicTyping: true,
 	complete: function(results) {
-        var data = results["data"];
+
+        data = results["data"];
+
         constructChart1(data);
         constructChart2(data);
         constructChart3(data);
+        
 	}
 });
 
+// min/max latitudes and longitudes
+var minLat = 37.70692769290489;
+var maxLat = 37.83109278506102;
+var minLong = -122.51149998987212;
+var maxLong = -122.36475851913093;
+
+// will look for places within reasonable range of latitude and longitude
+var withIn = 0.01;
+
+function submitLatLongValues(){
+    var userLat = document.getElementById("lat-input").value;
+    var userLong = document.getElementById("long-input").value;
+
+    // holds the indices (within the csv data) of places close to the user's property
+    var closestPlaces = [];
+    
+    if (userLat <= maxLat && userLat >= minLat && userLong <= maxLat && userLong >= minLong){
+        
+        // find places near user's property
+        for(var i = 0; i < data.length - 1; i++){
+            if( (data[i]["latitude"] >= userLat - withIn || data[i]["latitude"] <= userLat + withIn) && 
+                (data[i]["longitude"] >= userLong - withIn || data[i]["longitude"] >= userLong + withIn)){
+                closestPlaces.push(i);
+            }
+        }
+
+        var sum = 0;
+        var dataPoints = closestPlaces.length;
+
+        // calculate average weekly income
+        for(var i = 0; i < closestPlaces.length; i++){
+            // add the price per day to total sum
+            sum += parseInt(data[closestPlaces[i]]["price"].substring(1,data[closestPlaces[i]]["price"].length));
+        }     
+        var idealPricePerNight = Math.round(sum / dataPoints);
+        var weeklyAverageIncome = 7 * idealPricePerNight;
+        document.getElementById("ideal-price").innerHTML = "$" + numberWithCommas(idealPricePerNight);
+        document.getElementById("weekly-avg-income").innerHTML = "$" + numberWithCommas(weeklyAverageIncome);
+        
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    }else{
+        alert("it's gotta be in san fransisco");
+    }
+}
+
+// GRAPH
 // AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR
 function constructChart1(data){
     //avg number of reviews 
@@ -17,17 +72,17 @@ function constructChart1(data){
 
     var years = [];
     // 2008 ---> 2017 correspond to 0 ---> 9 in array
-    for(let i = 0; i < 10; i++){
+    for(var i = 0; i < 10; i++){
         years.push(2008 + i); 
         avg_reviews.push(null);   
     }
 
     // Papa Parse adds an empty row to the data, hence the "data.length - 1"
-    for(let j = 0; j < data.length - 1; j++){
-        let year = Number(data[j]["host_since"].substring(0,4));
-        for(let k = 0; k < 10; k++){
+    for(var j = 0; j < data.length - 1; j++){
+        var year = Number(data[j]["host_since"].substring(0,4));
+        for(var k = 0; k < 10; k++){
             if(year == (2008 + k)){
-                let num_reviews = Number(data[j]["number_of_reviews"]);
+                var num_reviews = Number(data[j]["number_of_reviews"]);
                 if(avg_reviews[k] == null){
                     avg_reviews[k]=[num_reviews,1];
                 }else{
@@ -44,7 +99,7 @@ function constructChart1(data){
     
     // calculate average number of reviews per host for each year
     // where each spot in the array corresponds to the year
-    for(let l = 0; l < 10; l++){
+    for(var l = 0; l < 10; l++){
         avg_reviews[l] = Math.round(avg_reviews[l][0] / avg_reviews[l][1]);
     }
 
@@ -87,14 +142,14 @@ function constructChart1(data){
     });
 }
 
-
+// GRAPH
 // REVIEW RATINGS vs SQUARE FEET
 function constructChart2(data){
 
     var squareft_ratings = [];
-    for(let i = 0; i < data.length - 1; i++){
-        let x = Number(data[i]["square_feet"]);
-        let y = Number(data[i]["review_scores_rating"]);
+    for(var i = 0; i < data.length - 1; i++){
+        var x = Number(data[i]["square_feet"]);
+        var y = Number(data[i]["review_scores_rating"]);
 
         // only consider places with more than 10 square ft and more than 0% ratings
         if(x > 10 && y > 0){
@@ -142,13 +197,14 @@ function constructChart2(data){
     });
 }
 
+// GRAPH
 // PRICE vs BEDROOMS
 function constructChart3(data){
 
     var bedrooms_price= [];
-    for(let i = 0; i < data.length - 1; i++){
-        let x = Number(data[i]["bedrooms"])
-        let y = Number(data[i]["price"].substring(1,data[i]["price"].length));
+    for(var i = 0; i < data.length - 1; i++){
+        var x = Number(data[i]["bedrooms"])
+        var y = Number(data[i]["price"].substring(1,data[i]["price"].length));
         bedrooms_price.push({x, y});
     }
 
