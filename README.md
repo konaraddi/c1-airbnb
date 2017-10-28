@@ -19,3 +19,5 @@ Built with:
 - [ ] **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 
 ## How objectives were completed
+
+## FAQ
