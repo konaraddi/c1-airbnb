@@ -137,6 +137,9 @@ function constructChart1(data){
                         labelString: 'Host Since Year X'
                     }
                 }]
+            },
+            animation:{
+                duration: 0
             }     
         }
     });
@@ -192,7 +195,10 @@ function constructChart2(data){
                         labelString: 'Square Feet'
                     }
                 }]
-            }     
+            },
+            animation:{
+                duration: 0
+            }       
         }
     });
 }
@@ -245,11 +251,17 @@ function constructChart3(data){
                     scaleLabel: {
                         display: true,
                         labelString: 'Bedrooms'
+                    },
+                    ticks:{
+                        max: 7
                     }
                 }]
             },
             tooltips:{
                 enabled: false
+            },
+            animation:{
+                duration: 0
             }     
         }
     });

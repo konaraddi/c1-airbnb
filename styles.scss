@@ -4,15 +4,12 @@
 
 @import "./node_modules/bulma/bulma";
 
-@import "_sass/variables";
-@import "_sass/mixins";
-
 section.body{
-    @include desktop-only(){
+    @include desktop(){
         margin-left: 320px;
         margin-right: 320px;
     }
-    @include mobile-tablet(){
+    @include touch(){
         margin-left: 16px;
         margin-right: 16px;
     }
