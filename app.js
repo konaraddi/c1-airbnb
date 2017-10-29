@@ -64,6 +64,18 @@ function submitLatLongValues(){
     }
 }
 
+function inputUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(inputPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+function inputPosition(position) {
+    document.getElementById("lat-input").value = position.coords.latitude
+    document.getElementById("long-input").value = position.coords.longitude;
+}
+
 // GRAPH
 // AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR
 function constructChart1(data){

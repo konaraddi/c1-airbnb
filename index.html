@@ -10,6 +10,8 @@
     <!--stylesheet-->
     <link rel="stylesheet" type="text/css" href="styles.min.css"> 
 
+    <!--Font Awesome Icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -50,9 +52,6 @@
     <!--link the functionality written in JS-->
     <script defer type="text/javascript" src="app.js"></script>
 
-    <!--REMOVE BEFORE DEPLOYING-->
-    <script defer type="text/javascript" src="sentiment_analysis.js"></script>
-
     <section id="app" style="display: none;">
         <section class="hero is-danger">
             <div class="hero-body">
@@ -86,6 +85,14 @@
             
             <label class="label is-medium has-text-centered">Tell us where you are!</label>
             <div class="field has-addons">
+                <p class="control">
+                    <a class="button is-black" onclick="inputUserLocation();">
+                        <span class="icon is-small">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        <span>Locate Me</span>
+                    </a>
+                </p>
                 <p class="control is-expanded">
                     <input id="lat-input" class="input" type="number" step="0.001" placeholder="Latitude">
                 </p>
@@ -94,7 +101,7 @@
                 </p>
                 <p class="control">
                     <a class="button is-danger" onclick="submitLatLongValues();">
-                        Let's Go
+                        Go!
                     </a>
                 </p>
             </div>
