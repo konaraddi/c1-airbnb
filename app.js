@@ -114,7 +114,7 @@ function constructChart1(data){
             labels: years,
             datasets: [{
                 label: "Average Number of Reviews Per Host",
-                backgroundColor:'rgb(68,108,179)',
+                backgroundColor:'rgb(0,0,0)',
                 data: avg_reviews,
             }]
         },
@@ -169,7 +169,7 @@ function constructChart2(data){
                 label: 'Scatter Dataset',
                 fill: false,
                 showLine: false,
-                backgroundColor:'rgb(68,108,179)',
+                backgroundColor:'rgb(0,0,0)',
                 data: squareft_ratings
             }]
         },
@@ -220,13 +220,17 @@ function constructChart3(data){
                 label: 'Scatter Dataset',
                 fill: false,
                 showLine: false,
-                backgroundColor:'rgb(68,108,179)',
                 data: bedrooms_price
             }]
         },
-    
+
         // Configuration options go here
         options: {
+            elements:{
+                point:{
+                    pointStyle: 'cross'
+                }
+            },
             legend:{
                 display: false
             },
@@ -243,6 +247,9 @@ function constructChart3(data){
                         labelString: 'Bedrooms'
                     }
                 }]
+            },
+            tooltips:{
+                enabled: false
             }     
         }
     });
