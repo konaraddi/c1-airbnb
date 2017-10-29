@@ -1,0 +1,15 @@
+1 9351735 Mission District
+2 1059961 SoMa
+3 1408281 The Castro
+4 394575 Bernal Heights
+5 3534798 Telegraph Hill
+6 6494663 Outer Sunset
+7 1810486 Lower Haight
+8 7972067 Richmond District
+9 2088622 Mission Terrace
+10 13169268 Union Square
+11 3511756 Downtown
+12 6866584 Inner Sunset
+13 252321 Excelsior
+14 5154227 Parkside
+15 11163298 Ingleside
