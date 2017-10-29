@@ -74,6 +74,7 @@ function inputUserLocation() {
 function inputPosition(position) {
     document.getElementById("lat-input").value = position.coords.latitude
     document.getElementById("long-input").value = position.coords.longitude;
+    submitLatLongValues();
 }
 
 // GRAPH
