@@ -1,15 +1,43 @@
-1 9351735 Mission District
-2 1059961 SoMa
-3 1408281 The Castro
-4 394575 Bernal Heights
-5 3534798 Telegraph Hill
-6 6494663 Outer Sunset
-7 1810486 Lower Haight
-8 7972067 Richmond District
-9 2088622 Mission Terrace
-10 13169268 Union Square
-11 3511756 Downtown
-12 6866584 Inner Sunset
-13 252321 Excelsior
-14 5154227 Parkside
-15 11163298 Ingleside
+1 5394755 Mission District
+2 5591544 Noe Valley
+3 2387068 Balboa Terrace
+4 6423158 Sunnyside
+5 134193 Richmond District
+6 1291092 Marina
+7 681521 Cow Hollow
+8 4359078 Pacific Heights
+9 719335 Bayview
+10 311259 Visitacion Valley
+11 3309928 Presidio Heights
+12 1747195 SoMa
+13 444411 South Beach
+14 4156390 Glen Park
+15 15774102 Potrero Hill
+16 1421774 The Castro
+17 225933 Duboce Triangle
+18 9328077 Twin Peaks
+19 586715 Bernal Heights
+20 4417901 Telegraph Hill
+21 1026195 North Beach
+22 3522119 Nob Hill
+23 3312490 Outer Sunset
+24 1460174 Alamo Square
+25 2374370 Western Addition/NOPA
+26 1810486 Lower Haight
+27 1370128 Hayes Valley
+28 997382 Haight-Ashbury
+29 1480015 Cole Valley
+30 2088622 Mission Terrace
+31 10368027 Downtown
+32 13169268 Union Square
+33 4902907 Tenderloin
+34 1932656 Russian Hill
+35 15812013 Fisherman's Wharf
+36 207980 Diamond Heights
+37 5852204 Inner Sunset
+38 3718865 Excelsior
+39 13866653 Portola
+40 5154227 Parkside
+41 259621 Financial District
+42 11163298 Ingleside
+43 10886231 Oceanview

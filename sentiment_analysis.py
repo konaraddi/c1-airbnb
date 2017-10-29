@@ -14,10 +14,12 @@
 
 import csv
 import json
+import operator
 import requests
 
 # dictionary of ids mapped to the sum of their confidence level
 id_confidence = {}
+id_datapoints = {}
 
 with open('data/csv/reviews.csv') as reviewsFile:
     csvReader = csv.reader(reviewsFile)
@@ -25,11 +27,12 @@ with open('data/csv/reviews.csv') as reviewsFile:
 
     for row in csvReader:
 
-        # sampling some of the reviews
-        if steps % 10000 == 0:
+        # sampling 5% of all reviews
+        if steps % 20 == 0:
             # add all unique ids to dictionary
             if row[0] not in id_confidence:
                 id_confidence[row[0]] = 0
+                id_datapoints[row[0]] = 0
 
             # add confidence level for each key (in the end, it will be the sum of the confidence levels) 
             payload={'txt': row[5]}
@@ -37,11 +40,16 @@ with open('data/csv/reviews.csv') as reviewsFile:
             response = json.loads(r.text)
             if response["result"] == "Positive":
                 id_confidence[row[0]] += float(response["confidence"])     
+                id_datapoints[row[0]] += 1
 
         steps += 1 
 
 # find the most popular neighborhoods
-import operator
+for key in id_confidence:
+    if id_datapoints[key] != 0:
+        id_confidence[key] = float(id_confidence[key])/float(id_datapoints[key])
+    else: 
+        id_confidence[key] = 0  
 sorted_id_conf = sorted(id_confidence.items(), key=operator.itemgetter(1))
 top = sorted_id_conf[-len(sorted_id_conf):]
 top = top[::-1]
