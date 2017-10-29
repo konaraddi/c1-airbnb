@@ -1,6 +1,6 @@
 # Sass ===> CSS
-sass styles.scss:styles.css --sourcemap=none
+sass styles.scss:styles.min.css --sourcemap=none
 
 # CSS ===> clean and lean CSS
 # INCLUDE --min before --out BEFORE DEPLOYING
-purifycss styles.css index.html app.js --out styles.min.css
+purifycss styles.min.css index.html app.js --min --out styles.min.css
