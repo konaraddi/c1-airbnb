@@ -35,7 +35,7 @@ Built with:
 
 ## How objectives were completed
 
-#### **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
+### **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
 Created 3 graphs with Chartsjs:
 * Avg. # of Reviews Per Host vs Year Since Host
     * The longer a host has been a host, the more reviews they tend to have.
@@ -44,16 +44,16 @@ Created 3 graphs with Chartsjs:
 * Price vs Bedrooms
     * More bedrooms doesn't always mean high prices. In fact, most hosts have a 0-3 bedrooms on their property.
 
-#### **Price estimation**: Given the geo-location (latitude and longitude) of a new property, estimate the weekly average income the homeowner can make with Airbnb.
+### **Price estimation**: Given the geo-location (latitude and longitude) of a new property, estimate the weekly average income the homeowner can make with Airbnb.
 Look for places that are within 0.01 of the user's property's latitude and longitude, then took the average of the places' prices. Multiply by 7 to get estimated weekly income.
 
-#### **Bookings optimization**: Given the geo-location (latitude and longitude) of a property, what is the ideal price per night that will yield maximum bookings.
+### **Bookings optimization**: Given the geo-location (latitude and longitude) of a property, what is the ideal price per night that will yield maximum bookings.
 Look for places that are within 0.01 of the user's property's latitude and longitude, then took the average of the places' prices.
 
-#### **Animate**: Add an animation to your visualization.
+### **Animate**: Add an animation to your visualization.
 This web app has a loading screen, a video in the background of the loading screen, and a notification that fades in and out when there's an error related to location.
 
-#### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
+### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 Used the [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) to determine if a review was positive and its confidence level. For each neighborhood, the Vivekn's results' confidence level for each reivew was summed up, then the divided by the total number of reviews in the corresponding neighborhood. Then they were sorted from greatest to least. This yields a list of neighborhoods averaging the most positive reviews. You can checkout the full list [here](top.txt).
 
 ## FAQs
@@ -64,7 +64,7 @@ Used the [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) 
 
 #### What's the `sentiment_analysis.py` for?
 
-For accomplishing the **Popular Neighborhoods** objective, where neighborhoods averaging the most positive reviews were discovered and then copied to the web app. It was ran once; it does not run every time the user visits the web app. In fact, it took ~40 minutes for `sentiment_analysis.py` to run, and it only went over 5% of all available reviews.
+For accomplishing the **Popular Neighborhoods** objective, where neighborhoods averaging the most positive reviews were discovered and then copied to the web app. It was ran once; it does not run every time the user visits the web app. In fact, it took ~40 minutes for `sentiment_analysis.py` to run, and it only went over 5% of all available reviews because it takes time for the Vivekn Sentiment Analysis API to process requests made to it.
 
 #### Why did you only sample 5% of the reviews to determine the neighborhoods averaging the most positive reviews?
 
