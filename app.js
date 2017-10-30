@@ -32,6 +32,12 @@ function submitLatLongValues(){
     var userLat = document.getElementById("lat-input").value;
     var userLong = document.getElementById("long-input").value;
 
+    // if user types in positive longitude, flip it to negative 
+    // (since Airbnb data uses negative longitudinal values)
+    if(userLong > 0){
+        userLong -= 2*userLong;
+    }
+
     // holds the indices (within the csv data) of places close to the user's property
     var closestPlaces = [];
     

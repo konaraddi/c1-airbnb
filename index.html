@@ -42,7 +42,7 @@
     <script>
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
-        var width = 1; 
+        var width = 100; 
         var x = setInterval(frame, 15);
       
         function frame() {
@@ -123,6 +123,7 @@
             </div>
             <div class="col span_1_of_2">
                 <hr class="is-hidden-desktop">
+                
                 <h1 class="title is-spaced">Tell us where you are!</h1>
                 <h3 class="subtitle is-5">And we'll tell you how much you could be making.</h3>
                 <div class="field has-addons">
@@ -145,8 +146,7 @@
                             Go!
                         </a>
                     </p>
-                </div>
-                
+                </div>     
                 <nav class="level is-mobile">
                     <div class="level-item is-hidden-mobile"></div>
                     <div class="level-item has-text-centered">
@@ -163,39 +163,32 @@
                     </div>             
                     <div class="level-item is-hidden-mobile"></div>
                 </nav>
+                
                 <hr>
+
                 <h1 class="title is-spaced">Popular Neighborhoods</h1>
                 <h3 class="subtitle is-5">Neighborhoods that average the most popular reviews.</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><abrr title="Rank">Rank</abrr></th>
-                            <th><abrr title="Place">Neighborhoods</abrr></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>1st</th>
-                            <td>Mission District</td>
-                        </tr>
-                        <tr>
-                            <th>2nd</th>
-                            <td>Noe Valley</td>
-                        </tr>
-                        <tr>
-                            <th>3rd</th>
-                            <td>Balboa Terrace</td>
-                        </tr>
-                        <tr>
-                            <th>4th</th>
-                            <td>Sunnyside</td>
-                        </tr>
-                        <tr>
-                            <th>5th</th>
-                            <td>Richmond District</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="box level">
+                    <div class="level-left">
+                        <h1 class="title is-5 is-spaced">1. Mission District</h1>
+                    </div>
+                    <div class="level-right">
+                        <p class="field">
+                            <a class="button is-link" href="https://twitter.com/hashtag/missiondistrict?lang=en">
+                                <span class="icon">
+                                <i class="fa fa-twitter"></i>
+                                </span>
+                                <span>#MissionDistrict</span>
+                            </a>
+                            <a class="button is-dark">
+                                <span class="icon">
+                                <i class="fa fa-map-marker"></i>
+                                </span>
+                                <span>37.76&deg; N, 122.41&deg; W</span>
+                            </a>
+                        </p>    
+                    </div>               
+                </div>
             </div>
         </div>        
     </section>
