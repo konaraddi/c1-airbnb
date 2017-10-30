@@ -96,9 +96,10 @@ function showNotification(msg){
 // GRAPH
 // AVERAGE NUMBER OF REVIEWS PER HOST vs HOST SINCE YEAR
 function constructChart1(data){
-    //avg number of reviews 
+    //avg number of reviews, will be used for y axis
     var avg_reviews = [];
 
+    // will be used for x axis
     var years = [];
     // 2008 ---> 2017 correspond to 0 ---> 9 in array
     for(var i = 0; i < 10; i++){

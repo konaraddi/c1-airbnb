@@ -2,15 +2,11 @@
 
 '''
  SENTIMENT ANALYSIS for determining the most popular neighborhoods.
+ It utilizes the API here: http://sentiment.vivekn.com/docs/api/
  It was used once and then results were displayed statically in the HTML alone.
  It is NOT used every time the user visits the web app because it's too slow
  due to the response time of the API used.
 '''
-
-# listing_id in reviews --> id in listings --> neighborhood in listings 
-
-# TODO find ids in reviews first then loop thru again and sum up the confidence level if positive for each id
-# then find most popular neighborhoods
 
 import csv
 import json
