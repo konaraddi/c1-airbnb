@@ -1,9 +1,16 @@
 @import "./node_modules/bulma/sass/utilities/initial-variables";
 
 // set variables here
+$primary: #446CB3;
+
+@import url('https://rsms.me/inter/inter-ui.css');
+$family-primary: 'Inter UI', sans-serif;
 
 @import "./node_modules/bulma/bulma";
 
+.title{
+    font-weight: 700 !important;
+}
 section.body{
     @include desktop(){
         margin-left: 320px;

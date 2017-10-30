@@ -21,7 +21,7 @@
                 <h1 class="title">
                     give us a few moments...
                 </h1>
-                <progress id="loading-bar" class="progress is-danger" value="0" max="100">90%</progress>
+                <progress id="loading-bar" class="progress is-primary" value="0" max="100">90%</progress>
             </div>
         </div>
     </section>
@@ -53,7 +53,7 @@
     <script defer type="text/javascript" src="app.js"></script>
 
     <section id="app" style="display: none;">
-        <section class="hero is-danger">
+        <section class="hero is-primary">
             <div class="hero-body">
                 <div class="container has-text-centered">
                 <h1 class="title is-spaced">
@@ -67,16 +67,16 @@
         </section>
         <section class="body content">
             <h2>Avg. # of Reviews Per Host vs Year Since Host</h1>
-            <canvas id="avg-rev-year-chart" class="chart box"></canvas>
+            <canvas id="avg-rev-year-chart" class="chart"></canvas>
             <p>You know what they say; the best time to be an Airbnb host was 9 years ago.</p>
             <h2>Review Score Rating vs Square Feet</h1>
-            <canvas id="rating-squareft-plot" class="chart box"></canvas>
+            <canvas id="rating-squareft-plot" class="chart"></canvas>
             <p>
                 You don't need the largest place to be a successful Airbnb host!
                 In fact, most hosts don't specify their square feet.
             </p>
             <h2>Price vs Bedrooms</h2>
-            <canvas id="bedrooms-price-plot" class="chart box"></canvas>
+            <canvas id="bedrooms-price-plot" class="chart"></canvas>
             <p>
                 Lorem Ipsum this and that!!!
             </p>
@@ -100,7 +100,7 @@
                     <input id="long-input" class="input" type="number" step="0.01" placeholder="Longitude">
                 </p>
                 <p class="control">
-                    <a class="button is-danger" onclick="submitLatLongValues();">
+                    <a class="button is-primary" onclick="submitLatLongValues();">
                         Go!
                     </a>
                 </p>
