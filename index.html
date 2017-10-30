@@ -42,8 +42,12 @@
     </nav>
 
     <section id="loading-screen" class="hero is-dark is-fullheight">
+        
         <div class="hero-body">
             <div class="container has-text-centered">
+                    <video autoplay loop id="video-background" plays-inline>
+                        <source src="https://i.imgur.com/URIro8e.mp4">
+                    </video>
                 <h1 class="title">
                     give us a few moments...
                 </h1>
@@ -55,7 +59,7 @@
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
         var width = 1; 
-        var x = setInterval(frame, 20);
+        var x = setInterval(frame, 200);
       
         function frame() {
           if (width >= 100) {
