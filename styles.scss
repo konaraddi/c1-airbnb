@@ -43,6 +43,8 @@ section.body{
 }
 
 .notification{
+    font-weight: 700;
+
     width: 100%;
     visibility: hidden; /* Hidden by default. Visible on click */
     position: fixed; /* Sit on top of the screen */
