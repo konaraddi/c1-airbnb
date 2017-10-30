@@ -24,33 +24,6 @@
 
 </head>
 <body>
-    
-    <nav class="navbar is-transparent">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#app">
-                <h1 class="title">bnbAir</h1>
-            </a>
-              
-        </div>
-              
-        <div class="navbar-menu">      
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="field is-grouped">
-                        <p class="control">
-                            <a class="button is-primary is-outlined" href="https://github.com/konaraddio/12pillows" target="_blank" rel="noopener">
-                            <span class="icon">
-                                <i class="fa fa-code"></i>
-                            </span>
-                            <span>Code</span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
     <section id="loading-screen" class="hero is-dark is-fullheight">
         
         <div class="hero-body">
@@ -75,7 +48,6 @@
           if (width >= 100) {
             loading_screen.style.display = 'none';
             var app = document.getElementById("app");
-            app.style.display = "block";
           } else {
             width++;
             progress.value = width;
@@ -83,7 +55,32 @@
         }
     </script>    
 
-    <section id="app" style="display: none;">
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#app">
+                <h1 class="title">bnbAir</h1>
+            </a>
+            
+        </div>
+            
+        <div class="navbar-menu">      
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button is-primary is-outlined" href="https://github.com/konaraddio/12pillows" target="_blank" rel="noopener">
+                            <span class="icon">
+                                <i class="fa fa-code"></i>
+                            </span>
+                            <span>Code</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="app">
         <section class="hero is-primary">
             <div class="hero-body">
                 <div class="container has-text-centered">
