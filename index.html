@@ -12,6 +12,16 @@
 
     <!--Font Awesome Icons-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--PapaParse for CSV to JSON conversion-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.6/papaparse.min.js"></script>
+    
+    <!--for visualizing the data (using Charts.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <!--link the functionality written in JS-->
+    <script defer type="text/javascript" src="app.js"></script>
+
 </head>
 <body>
     
@@ -28,11 +38,11 @@
                 <div class="navbar-item">
                     <div class="field is-grouped">
                         <p class="control">
-                            <a class="button is-primary is-outlined" href="https://konaraddio.github.io/" target="_blank" rel="noopener">
+                            <a class="button is-primary is-outlined" href="https://github.com/konaraddio/12pillows" target="_blank" rel="noopener">
                             <span class="icon">
-                                <i class="fa fa-heart"></i>
+                                <i class="fa fa-code"></i>
                             </span>
-                            <span>Built By Omkar</span>
+                            <span>Code</span>
                             </a>
                         </p>
                     </div>
@@ -59,7 +69,7 @@
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
         var width = 1; 
-        var x = setInterval(frame, 20);
+        var x = setInterval(frame, 15);
       
         function frame() {
           if (width >= 100) {
@@ -71,16 +81,7 @@
             progress.value = width;
           }
         }
-    </script>
-
-    <!--PapaParse for CSV to JSON conversion-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.6/papaparse.min.js"></script>
-    
-    <!--for visualizing the data (using Charts.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>    
-
-    <!--link the functionality written in JS-->
-    <script defer type="text/javascript" src="app.js"></script>
+    </script>    
 
     <section id="app" style="display: none;">
         <section class="hero is-primary">
