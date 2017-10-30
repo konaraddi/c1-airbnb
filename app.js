@@ -1,3 +1,5 @@
+var notificationMsg = document.getElementById("notification");
+
 // contains data from listings.csv
 var data = null;
 
@@ -60,22 +62,35 @@ function submitLatLongValues(){
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
     }else{
-        alert("it's gotta be in san fransisco");
+        showNotification("Sorry, the location must be in San Francisco.")
     }
 }
 
 function inputUserLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(inputPosition);
+        navigator.geolocation.getCurrentPosition(inputPosition, onGeoError);
     } else {
-        alert("Geolocation is not supported by this browser.");
+        showNotification("Geolocation is not supported by this browser.")
     }
 }
+
+// If something has gone wrong with the geolocation request
+function onGeoError(event) {
+    showNotification(event.message);
+}
+
 function inputPosition(position) {
-    
     document.getElementById("lat-input").value = position.coords.latitude
     document.getElementById("long-input").value = position.coords.longitude;
     submitLatLongValues();
+}
+
+function showNotification(msg){
+    notificationMsg.innerHTML = msg;
+    notificationMsg.className = "has-text-centered notification is-danger show";
+    setTimeout(function(){
+        notificationMsg.className = "has-text-centered notification is-danger";
+    }, 5000);
 }
 
 // GRAPH
@@ -154,7 +169,7 @@ function constructChart1(data){
             },
             animation:{
                 duration: 0
-            }     
+            }, 
         }
     });
 }

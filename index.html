@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
@@ -53,8 +54,8 @@
     <script>
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
-        var width = 100; //CHANGE THIS BEFORE DEPLOYING
-        var x = setInterval(frame, 20);
+        var width = 1; 
+        var x = setInterval(frame, 10);
       
         function frame() {
           if (width >= 100) {
@@ -188,5 +189,8 @@
             </table>
         </section>
     </section>
+    <div id="notification" class="has-text-centered notification is-danger">
+        <h5 class="subtitle is-5">Hmmm, something went wrong</h5>
+    </div>
 </body>
 </html>

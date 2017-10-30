@@ -21,3 +21,41 @@ section.body{
         margin-right: 16px;
     }
 }
+
+.notification{
+    width: 100%;
+    visibility: hidden; /* Hidden by default. Visible on click */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 10; /* Add a z-index to overlap other HTML elements (increase if needed) */
+    bottom: 0px; /*Change this for the toast to be higher than the bottom of the screen
+                adjust animations accordingly if done so*/
+    padding: 16px;
+
+    &.show {
+        visibility: visible; /* Show the snackbar */
+
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+        animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    }
+
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 0px; opacity: 1;}
+    }
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 0px; opacity: 1;}
+    }
+    @-webkit-keyframes fadeout {
+        from {bottom: 0px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+    @keyframes fadeout {
+        from {bottom: 0px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+}
