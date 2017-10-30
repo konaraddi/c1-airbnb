@@ -1,12 +1,20 @@
 @import "./node_modules/bulma/sass/utilities/initial-variables";
 
 // set variables here
-$primary: #446CB3;
+$primary: #F62459;
 
 @import url('https://rsms.me/inter/inter-ui.css');
 $family-primary: 'Inter UI', sans-serif;
 
 @import "./node_modules/bulma/bulma";
+
+#loading-screen{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("sf.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+}
 
 .title{
     font-weight: 700 !important;
@@ -39,7 +47,6 @@ section.body{
         -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
         animation: fadein 0.5s, fadeout 0.5s 4.5s;
     }
-
 
     /* Animations to fade the snackbar in and out */
     @-webkit-keyframes fadein {

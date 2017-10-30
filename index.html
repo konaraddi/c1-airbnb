@@ -17,7 +17,7 @@
     
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
+            <a class="navbar-item" href="#app">
                 <h1 class="title">bnbAir</h1>
             </a>
               
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <section id="loading-screen" class="hero is-light is-fullheight">
+    <section id="loading-screen" class="hero is-dark is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="title">
@@ -55,7 +55,7 @@
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
         var width = 1; 
-        var x = setInterval(frame, 10);
+        var x = setInterval(frame, 20);
       
         function frame() {
           if (width >= 100) {
@@ -189,7 +189,7 @@
             </table>
         </section>
     </section>
-    <div id="notification" class="has-text-centered notification is-danger">
+    <div id="notification" class="has-text-centered notification is-warning">
         <h5 class="subtitle is-5">Hmmm, something went wrong</h5>
     </div>
 </body>

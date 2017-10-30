@@ -87,9 +87,9 @@ function inputPosition(position) {
 
 function showNotification(msg){
     notificationMsg.innerHTML = msg;
-    notificationMsg.className = "has-text-centered notification is-danger show";
+    notificationMsg.className = "has-text-centered notification is-warning show";
     setTimeout(function(){
-        notificationMsg.className = "has-text-centered notification is-danger";
+        notificationMsg.className = "has-text-centered notification is-warning";
     }, 5000);
 }
 

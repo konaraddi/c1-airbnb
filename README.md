@@ -34,6 +34,10 @@ Built with:
 
 ## FAQs
 
+#### What font are you using?
+
+[Inter UI](https://rsms.me/inter/), you should check it out!
+
 #### Why did you only sample 5% of the reviews to determine the neighborhoods averaging the most positive reviews?
 
 The limiting factor was the Vivekn Sentiment Analysis API. It's a free, public API that drops requests if a user makes too many requests. I made too requests :(
@@ -44,9 +48,4 @@ The `build.sh` is for converting Sass to CSS and then removing unused CSS and un
 
 The `serve.sh` is for whipping up a web server to test on.
 
-## If I had to do this again....
-
-**What I did:** I worked on the building the functionality and design at the same time. As a result, I ended up iterating through several designs multiple times as I built the functionality. In other words, working on multiple things at once.
-
-**What I should've done:** First focus on the functionality, then plan the layout and design, and then made it look fancy. Probably would've taken less time.
 
