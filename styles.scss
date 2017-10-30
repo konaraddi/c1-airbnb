@@ -31,16 +31,6 @@ $family-primary: 'Inter UI', sans-serif;
 .title{
     font-weight: 700 !important;
 }
-section.body{
-    @include desktop(){
-        margin-left: 320px;
-        margin-right: 320px;
-    }
-    @include touch(){
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-}
 
 .notification{
     font-weight: 700;
@@ -79,4 +69,50 @@ section.body{
         from {bottom: 0px; opacity: 1;}
         to {bottom: 0; opacity: 0;}
     }
+}
+
+/*The below is for the columns to work*/
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+    padding: 32px;
+    @include touch{
+        padding: 16px;
+    }
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF TWO  */
+.span_2_of_2 {
+	width: 100%;
+}
+.span_1_of_2 {
+	width: 49.2%;
+}
+
+/*  GO FULL WIDTH FOR TOUCH SCREENS */
+
+@include touch{
+	.col { 
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@include touch{
+	.span_2_of_2, .span_1_of_2 { width: 100%; }
 }
