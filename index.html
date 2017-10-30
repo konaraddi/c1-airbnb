@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>bnbAir</title>  
+    <title>c1-airbnb</title>  
     
     <!--for scaling across various devices-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+
+    <meta name="theme-color" content="#22313F">    
 
     <!--stylesheet-->
     <link rel="stylesheet" type="text/css" href="styles.min.css"> 
@@ -25,10 +27,9 @@
 </head>
 <body>
     <section id="loading-screen" class="hero is-dark is-fullheight">
-        
         <div class="hero-body">
             <div class="container has-text-centered">
-                    <video autoplay loop id="video-background" plays-inline>
+                    <video autoplay loop id="video-background" class="is-hidden-touch" plays-inline>
                         <source src="https://i.imgur.com/URIro8e.mp4">
                     </video>
                 <h1 class="title">
@@ -41,7 +42,7 @@
     <script>
         var loading_screen = document.getElementById("loading-screen");
         var progress = document.getElementById("loading-bar");
-        var width = 100; 
+        var width = 1; 
         var x = setInterval(frame, 15);
       
         function frame() {
