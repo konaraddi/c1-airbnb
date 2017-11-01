@@ -10,10 +10,7 @@
     <meta name="theme-color" content="#22313F">    
 
     <!--stylesheet-->
-    <link rel="stylesheet" type="text/css" href="styles.min.css"> 
-
-    <!--Font Awesome Icons-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.min.css">
 
     <!--PapaParse for CSV to JSON conversion-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.6/papaparse.min.js"></script>
@@ -24,38 +21,9 @@
     <!--link the functionality written in JS-->
     <script defer type="text/javascript" src="app.js"></script>
 
+    <!--Font Awesome Icons loaded at the end of the body-->
 </head>
 <body>
-    <section id="loading-screen" class="hero is-dark is-fullheight">
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                    <video autoplay loop id="video-background" class="is-hidden-touch" plays-inline>
-                        <source src="https://i.imgur.com/URIro8e.mp4">
-                    </video>
-                <h1 class="title">
-                    give us a few moments...
-                </h1>
-                <progress id="loading-bar" class="progress is-primary" value="0" max="100">90%</progress>
-            </div>
-        </div>
-    </section>
-    <script>
-        var loading_screen = document.getElementById("loading-screen");
-        var progress = document.getElementById("loading-bar");
-        var width = 100; 
-        var x = setInterval(frame, 15);
-      
-        function frame() {
-          if (width >= 100) {
-            loading_screen.style.display = 'none';
-            var app = document.getElementById("app");
-          } else {
-            width++;
-            progress.value = width;
-          }
-        }
-    </script>    
-
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
             <a class="navbar-item" href="#app">
@@ -81,6 +49,37 @@
             </div>
         </div>
     </nav>
+
+    <section id="loading-screen" class="hero is-dark is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                    <video autoplay loop id="video-background" class="is-hidden-touch" plays-inline>
+                        <source src="https://i.imgur.com/URIro8e.mp4">
+                    </video>
+                <h1 class="title">
+                    give us a few moments...
+                </h1>
+                <progress id="loading-bar" class="progress is-primary has-text-centered" value="0" max="100"></progress>
+            </div>
+        </div>
+    </section>
+    <script>
+        var loading_screen = document.getElementById("loading-screen");
+        var progress = document.getElementById("loading-bar");
+        var width = 1; 
+        var x = setInterval(frame, 15);
+      
+        function frame() {
+          if (width >= 100) {
+            loading_screen.style.display = 'none';
+            document.getElementById("app").style.visibility = 'visible';
+          } else {
+            width++;
+            progress.value = width;
+          }
+        }
+    </script>    
+
     <section id="app">
         <section class="hero is-primary">
             <div class="hero-body">
@@ -128,7 +127,7 @@
                 <h3 class="subtitle is-5">And we'll tell you how much you could be making.</h3>
                 <div class="field has-addons">
                     <p class="control">
-                        <a class="button is-black" onclick="inputUserLocation();">
+                        <a class="button is-dark" onclick="inputUserLocation();">
                             <span class="icon is-small">
                                 <i class="fa fa-map-marker"></i>
                             </span>
@@ -192,6 +191,10 @@
             </div>
         </div>        
     </section>
+    
+    <!--Font Awesome Icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <div id="notification" class="has-text-centered notification is-warning">
         <h5 class="subtitle is-5">Hmmm, something went wrong</h5>
     </div>

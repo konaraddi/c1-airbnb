@@ -1,7 +1,8 @@
 @import "./node_modules/bulma/sass/utilities/initial-variables";
 
 // set variables here
-$primary: #F62459;
+$primary: #fd5c63;
+$dark: #22313F;
 
 @import url('https://rsms.me/inter/inter-ui.css');
 $family-primary: 'Inter UI', sans-serif;
@@ -19,6 +20,14 @@ $family-primary: 'Inter UI', sans-serif;
     background-attachment: fixed;
 }
 
+#loading-bar{
+    margin: auto;
+    width: 50%;
+    @include touch{
+        width: 90%;
+    }
+}
+
 #video-background {
     /*  making the video fullscreen  */
     position: fixed;
@@ -33,6 +42,10 @@ $family-primary: 'Inter UI', sans-serif;
 
 .title{
     font-weight: 700 !important;
+}
+
+#app{
+    visibility: hidden;
 }
 
 .notification{
