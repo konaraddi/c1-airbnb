@@ -22,40 +22,12 @@
     <script defer type="text/javascript" src="app.js"></script>
 
     <!--Font Awesome Icons loaded at the end of the body-->
+    <!--Odometer loaded at the end of the body-->
 </head>
 <body>
-    <nav class="navbar is-transparent">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#app">
-                <h1 class="title">bnbAir</h1>
-            </a>
-            
-        </div>
-            
-        <div class="navbar-menu">      
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="field is-grouped">
-                        <p class="control">
-                            <a class="button is-primary is-outlined" href="https://github.com/konaraddio/c1-airbnb" target="_blank" rel="noopener">
-                            <span class="icon">
-                                <i class="fa fa-code"></i>
-                            </span>
-                            <span>Code</span>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <section id="loading-screen" class="hero is-dark is-fullheight">
+    <section id="loading-screen" class="hero is-light is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
-                    <video autoplay loop id="video-background" class="is-hidden-touch" plays-inline>
-                        <source src="https://i.imgur.com/URIro8e.mp4">
-                    </video>
                 <h1 class="title">
                     give us a few moments...
                 </h1>
@@ -65,22 +37,41 @@
     </section>
     <script>
         var loading_screen = document.getElementById("loading-screen");
-        var progress = document.getElementById("loading-bar");
-        var width = 1; 
-        var x = setInterval(frame, 15);
+        setInterval(frame, 10);
       
         function frame() {
-          if (width >= 100) {
+          if (progress.value >= 100) {
             loading_screen.style.display = 'none';
-            document.getElementById("app").style.visibility = 'visible';
-          } else {
-            width++;
-            progress.value = width;
+            document.getElementById("app").style.display = 'block';
           }
         }
     </script>    
 
     <section id="app">
+        <nav class="navbar is-transparent">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#app">
+                    <h1 class="title">bnbAir</h1>
+                </a>
+            </div>
+                
+            <div class="navbar-menu">      
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <a class="button is-primary is-outlined" href="https://github.com/konaraddio/c1-airbnb" target="_blank" rel="noopener">
+                                <span class="icon">
+                                    <i class="fa fa-code"></i>
+                                </span>
+                                <span>Code</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <section class="hero is-primary">
             <div class="hero-body">
                 <div class="container has-text-centered">
@@ -151,13 +142,13 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Weekly Average Income</p>
-                            <p id="weekly-avg-income" class="title">$_______</p>
+                            <p id="weekly-avg-income" class="title odometer">$_______</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Ideal Price Per Night</p>
-                            <p id="ideal-price" class="title">$_______</p>
+                            <p id="ideal-price" class="title odometer">$_______</p>
                         </div>
                     </div>             
                     <div class="level-item is-hidden-mobile"></div>
@@ -194,7 +185,7 @@
     
     <!--Font Awesome Icons-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <div id="notification" class="has-text-centered notification is-warning">
         <h5 class="subtitle is-5">Hmmm, something went wrong</h5>
     </div>

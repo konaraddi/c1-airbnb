@@ -9,15 +9,8 @@ $family-primary: 'Inter UI', sans-serif;
 
 @import "./node_modules/bulma/bulma";
 
-#loading-screen{
-    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
-    @include touch{
-        background: $dark;
-    }
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-attachment: fixed;
+html{
+    background: $light;
 }
 
 #loading-bar{
@@ -45,7 +38,7 @@ $family-primary: 'Inter UI', sans-serif;
 }
 
 #app{
-    visibility: hidden;
+    display: none;
 }
 
 .notification{

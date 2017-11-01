@@ -1,3 +1,18 @@
+// initial progress loading bar (before the app loads this is displayed)
+var progress = document.getElementById("loading-bar");
+// the progress element's value is incremented
+function increaseProgressBy(increment){
+    var steps = 0;
+    setInterval(frame, 20);
+    function frame(){
+        if(steps <= increment){
+            progress.value += 1;
+            steps++;
+        }
+    }
+}
+
+// notification banner that fades in and out at the bottom of the page when needed
 var notificationMsg = document.getElementById("notification");
 
 // contains data from listings.csv
@@ -15,6 +30,9 @@ Papa.parse("./data/csv/listings.csv", {
         constructChart1(data);
         constructChart2(data);
         constructChart3(data);
+
+        // increase loading bar's progress
+        increaseProgressBy(25);
         
 	}
 });
@@ -179,6 +197,9 @@ function constructChart1(data){
             }, 
         }
     });
+
+    // increase loading bar's progress
+    increaseProgressBy(25);
 }
 
 // GRAPH
@@ -237,6 +258,9 @@ function constructChart2(data){
             }       
         }
     });
+
+    // increase loading bar's progress
+    increaseProgressBy(25);
 }
 
 // GRAPH
@@ -304,4 +328,6 @@ function constructChart3(data){
         }
     });
 
+    // increase loading bar's progress
+    increaseProgressBy(25);
 }
