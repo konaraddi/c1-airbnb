@@ -53,7 +53,7 @@ top = top[::-1]
 # find the neighborhood that correponds with each id and write it to a file
 position = 0
 neighborhoods_recorded = []
-file = open("top.txt","w")
+file = open("popular_neighborhoods.txt","w")
 with open('data/csv/listings.csv') as listingsFile:
     csvReader = csv.reader(listingsFile)
     

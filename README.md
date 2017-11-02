@@ -1,15 +1,7 @@
 # Capital One Challenge (Winter Summit 2017)
 #### built by Omkar Konaraddi
 
-[Capital One 2017 Winter Summit Challenge](https://www.mindsumo.com/contests/airbnb-sf)
-
-[What was used](#what-was-used)
-
-[Objectives Completed](#objectives-completed)
-
-[How objectives were completed](#how-objectives-were-completed)
-
-[FAQs](#faqs)
+https://www.mindsumo.com/contests/airbnb-sf
 
 ## What was used
 
@@ -19,6 +11,7 @@ Built with:
 * [PapaParse 4.3.6](http://papaparse.com/) for CSV data processing
 * [Chartsjs 2.4.0](http://www.chartjs.org/) for data visualization
 * [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) for determining sentiments of reviews
+* [Mustache CLI](https://mustache.github.io/) for populating a list with data
 
 ## Objectives Completed
 3/3 main objectives completed. 2/3 of bonus objectives completed.
@@ -51,7 +44,7 @@ Look for places that are within 0.01 of the user's property's latitude and longi
 Look for places that are within 0.01 of the user's property's latitude and longitude, then took the average of the places' prices.
 
 ### **Animate**: Add an animation to your visualization.
-This web app has a loading screen, a video in the background of the loading screen, and a notification that fades in and out when there's an error related to location.
+This web app has an initial loading bar and a notification that fades in and out when there's an error related to the location service. Hovering on two of the graphs reveals stats.
 
 ### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 Used the [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) to determine if a review was positive and its confidence level. For each neighborhood, the Vivekn's results' confidence level for each reivew was summed up, then the divided by the total number of reviews in the corresponding neighborhood. Then they were sorted from greatest to least. This yields a list of neighborhoods averaging the most positive reviews. You can checkout the full list [here](top.txt).

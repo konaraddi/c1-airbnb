@@ -12,12 +12,8 @@ function increaseProgressBy(increment){
     }
 }
 
-// notification banner that fades in and out at the bottom of the page when needed
-var notificationMsg = document.getElementById("notification");
-
 // contains data from listings.csv
 var data = null;
-
 // grab data from CSV file and build charts from it
 Papa.parse("./data/csv/listings.csv", {
     header: true,
@@ -37,6 +33,9 @@ Papa.parse("./data/csv/listings.csv", {
 	}
 });
 
+// notification banner that fades in and out at the bottom of the page when needed
+var notificationMsg = document.getElementById("notification");
+
 // min/max latitudes and longitudes
 var minLat = 37.70692769290489;
 var maxLat = 37.83109278506102;
@@ -46,9 +45,15 @@ var maxLong = -122.36475851913093;
 // will look for places within reasonable range of latitude and longitude
 var withIn = 0.01;
 
-function submitLatLongValues(){
-    var userLat = document.getElementById("lat-input").value;
-    var userLong = document.getElementById("long-input").value;
+function submitLatLongValues(userLat, userLong){
+    if(userLat == undefined || userLong == undefined){
+        var userLat = document.getElementById("lat-input").value;
+        var userLong = document.getElementById("long-input").value;
+    }
+    if(document.getElementById('lat-input').value != userLat && document.getElementById('long-input').value != userLong){
+        document.getElementById('lat-input').value = userLat;
+        document.getElementById('long-input').value = userLong;
+    }
 
     // if user types in positive longitude, flip it to negative 
     // (since Airbnb data uses negative longitudinal values)
