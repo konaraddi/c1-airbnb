@@ -8,6 +8,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "http-server . -c-1 -p 4000",
+    "build": "sass styles.scss:styles.min.css --sourcemap=none && purifycss styles.min.css index.html app.js --min --out styles.min.css",
     "test": "it's working"
   },
   "repository": {

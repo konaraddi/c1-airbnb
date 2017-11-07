@@ -10,11 +10,11 @@ https://www.mindsumo.com/contests/airbnb-sf
     * [Bonus Objectives](#bonus-objectives)
 * [How Objectives Were Completed](#how-objectives-were-completed)
 * [FAQs](#faqs)
+* [Getting Started](#getting-started)
 
 # Built With...
 * HTML, CSS, Sass, JavaScript, Python
 * [Bulma 0.6.0](https://bulma.io/) for making things look presentable
-    * run `npm install` to get the node module for bulma and start editing
 * [PapaParse 4.3.6](http://papaparse.com/) for CSV data processing
 * [Chartsjs 2.4.0](http://www.chartjs.org/) for data visualization
 * [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) for determining sentiments of reviews
@@ -75,4 +75,13 @@ The `build.sh` is for converting Sass to CSS and then removing unused CSS and un
 
 The `serve.sh` is for whipping up a web server to test on.
 
+#### Why is your "Getting Started" below the "FAQs"?
 
+Because I don't expect many people to use this project in their own projects. It's really there for me to know what's up if I come back to this project.
+
+# Getting Started
+
+* Run `npm install` to install the necessary dependencies
+* `npm start` will whip up a non-caching development server to test
+* `npm run build` will convert Sass to CSS and compress the CSS
+* Checkout the [package.json](package.json) file to edit these commands
