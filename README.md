@@ -11,7 +11,7 @@ Built with:
 * [PapaParse 4.3.6](http://papaparse.com/) for CSV data processing
 * [Chartsjs 2.4.0](http://www.chartjs.org/) for data visualization
 * [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) for determining sentiments of reviews
-* [Mustache CLI](https://mustache.github.io/) for populating a list with data
+* [Vuejs](https://vuejs.org/) for keeping things DRY
 
 ## Objectives Completed
 3/3 main objectives completed. 2/3 of bonus objectives completed.
