@@ -1,0 +1,31 @@
+{
+  "name": "c1-airbnb",
+  "version": "1.0.0",
+  "description": "Capital One 2017 Winter Summit submission",
+  "main": "index.html",
+  "dependencies": {
+    "bulma": "^0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "it's working"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konaraddio/c1-airbnb.git"
+  },
+  "keywords": [
+    "capital",
+    "one",
+    "airbnb",
+    "hosting",
+    "sf",
+    "omkar"
+  ],
+  "author": "Omkar Konaraddi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konaraddio/c1-airbnb/issues"
+  },
+  "homepage": "https://github.com/konaraddio/c1-airbnb#readme"
+}

@@ -26,10 +26,12 @@ html{
     font-weight: 700 !important;
 }
 
+// by default, the app is hidden until the loading bar finishes
 #app{
     display: none;
 }
 
+// notification banner that appears at bottom of screen if an error occurs
 .notification{
     font-weight: 700;
 
@@ -69,7 +71,7 @@ html{
     }
 }
 
-/*The below is for the columns to work*/
+/*The below is for the columns to work on desktop but adapt to mobile and tablet*/
 
 /*  SECTIONS  */
 .section {
