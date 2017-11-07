@@ -18,10 +18,14 @@
     <!--for visualizing the data (using Charts.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
+    <!--Vuejs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js" type="text/javascript"></script>
+
     <!--link the functionality written in JS-->
     <script defer type="text/javascript" src="app.js"></script>
 
     <!--Font Awesome Icons loaded at the end of the body-->
+    <!--Vuejs loaded at the end of the body-->
 </head>
 <body>
     <section id="loading-screen" class="hero is-light is-fullheight">
@@ -78,7 +82,7 @@
                     Thinking about being an Airbnb Host?
                 </h1>
                 <h2 class="subtitle">
-                    Checkout the data below and learn about hosting.
+                    Checkout the data below and learn about hosting in San Francisco.
                 </h2>
                 </div>
             </div>
@@ -157,223 +161,45 @@
 
                 <h1 class="title is-spaced">Popular Neighborhoods</h1>
                 <h3 class="subtitle is-5">Neighborhoods that average the most popular reviews.</h3>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">1. Mission District</h1>
+
+                <!--Create list of popular neighborhoods with Vuejs-->
+                <div id="neighborhood-list">
+                    <div class="box level" v-for="n in neighborhoods">
+                        <div class="level-left">
+                            <h1 class="title is-5 is-spaced">{{n.position}} {{n.name}}</h1>
+                        </div>
+                        <div class="level-right">
+                            <p class="field">
+                                <a class="button is-light" href="#weekly-avg-income" v-on:click="submitLocation(n)">
+                                    <span class="icon">
+                                    <i class="fa fa-map-marker"></i>
+                                    </span>
+                                    <span>{{n.lat}}&deg; N, {{n.long}}&deg; W</span>
+                                </a>
+                                <a class="button is-link" href="https://twitter.com/hashtag/{{hashtag}}?lang=en" target="_blank" rel="noopener">
+                                    <span class="icon">
+                                    <i class="fa fa-twitter"></i>
+                                    </span>
+                                </a>
+                                <a class="button is-dark" href="https://www.instagram.com/explore/tags/{{hashtag}}/?hl=en" target="_blank" rel="noopener">
+                                    <span class="icon">
+                                    <i class="fa fa-instagram"></i>
+                                    </span>
+                                </a>
+                            </p>    
+                        </div>               
                     </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/MissionDistrict?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#MissionDistrict</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.76, 122.41)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.76&deg; N, 122.41&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
                 </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">2. Noe Valley</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/NoeValley?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#NoeValley</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.75, 122.43)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.75&deg; N, 122.43&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">3. Balboa Terrace</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/BalboaTerrace?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#BalboaTerrace</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.73, 122.45)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.73&deg; N, 122.45&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">4. Sunnyside</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/Sunnyside?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#Sunnyside</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.73, 122.44)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.73&deg; N, 122.44&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">5. Richmond District</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/RichmondDistrict?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#RichmondDistrict</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.73, 122.45)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.73&deg; N, 122.45&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">6. Marina</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/Marina?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#Marina</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.77, 122.39)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.77&deg; N, 122.39&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">7. Cow Hollow</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/CowHollow?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#CowHollow</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.77, 122.43)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.77&deg; N, 122.43&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">8. Pacific Heights</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/PacificHeights?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#PacificHeights</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.79, 122.44)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.79&deg; N, 122.44&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">9. Bayview</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/Bayview?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#Bayview</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.73, 122.38)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.73&deg; N, 122.38&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>
-                <div class="box level">
-                    <div class="level-left">
-                        <h1 class="title is-5 is-spaced">10. Visitacion Valley</h1>
-                    </div>
-                    <div class="level-right">
-                        <p class="field">
-                            <a class="button is-link" href="https://twitter.com/hashtag/VisitacionValley?lang=en" target="_blank" rel="noopener">
-                                <span class="icon">
-                                <i class="fa fa-twitter"></i>
-                                </span>
-                                <span>#VisitacionValley</span>
-                            </a>
-                            <a class="button is-dark" href="#weekly-avg-income" onclick="submitLatLongValues(37.71, 122.40)">
-                                <span class="icon">
-                                <i class="fa fa-map-marker"></i>
-                                </span>
-                                <span>37.71&deg; N, 122.40&deg; W</span>
-                            </a>
-                        </p>    
-                    </div>               
-                </div>                   
+                
+                <hr>
+                               
             </div>
         </div>        
     </section>
     
     <!--Font Awesome Icons-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+
     <div id="notification" class="has-text-centered notification is-warning">
         <h5 class="subtitle is-5">Hmmm, something went wrong</h5>
     </div>
