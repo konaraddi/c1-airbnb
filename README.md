@@ -3,18 +3,24 @@
 
 https://www.mindsumo.com/contests/airbnb-sf
 
-## What was used
+# Table of Contents
+* [Built with...](#built-with)
+* [Objectives](#objectives)
+    * [Main Objectives](#main-objectives)
+    * [Bonus Objectives](#bonus-objectives)
+* [How Objectives Were Completed](#how-objectives-were-completed)
+* [FAQs](#faqs)
 
-Built with:
+# Built With...
 * HTML, CSS, Sass, JavaScript, Python
 * [Bulma 0.6.0](https://bulma.io/) for making things look presentable
+    * run `npm install` to get the node module for bulma and start editing
 * [PapaParse 4.3.6](http://papaparse.com/) for CSV data processing
 * [Chartsjs 2.4.0](http://www.chartjs.org/) for data visualization
 * [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) for determining sentiments of reviews
 * [Vuejs](https://vuejs.org/) for keeping things DRY
 
-## Objectives Completed
-3/3 main objectives completed. 2/3 of bonus objectives completed.
+# Objectives 
 
 ### Main Objectives
 - [X] **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
@@ -26,7 +32,7 @@ Built with:
 - [ ] **Investment**: If I have $100 million to invest, where in San Francisco should I buy properties so I can maximize my returns with Airbnb? When will I break even?
 - [X] **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 
-## How objectives were completed
+# How objectives were completed
 
 ### **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
 Created 3 graphs with Chartsjs:
@@ -49,7 +55,7 @@ This web app has an initial loading bar and a notification that fades in and out
 ### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 Used the [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) to determine if a review was positive and its confidence level. For each neighborhood, the Vivekn's results' confidence level for each reivew was summed up, then the divided by the total number of reviews in the corresponding neighborhood. Then they were sorted from greatest to least. This yields a list of neighborhoods averaging the most positive reviews. You can checkout the full list [here](top.txt).
 
-## FAQs
+# FAQs
 
 #### What font are you using?
 
