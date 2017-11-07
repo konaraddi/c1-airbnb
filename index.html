@@ -113,7 +113,7 @@
                     </h5>  
                 </div>        
             </div>
-            <div class="col span_1_of_2">
+            <div id="locate-me" class="col span_1_of_2">
                 <hr class="is-hidden-desktop">
                 
                 <h1 class="title is-spaced">Tell us where you are!</h1>
@@ -134,7 +134,7 @@
                         <input id="long-input" class="input" type="number" step="0.01" placeholder="Longitude">
                     </p>
                     <p class="control">
-                        <a class="button is-primary" onclick="submitLatLongValues();">
+                        <a id="go-btn" class="button is-primary" onclick="submitLatLongValues();">
                             Go!
                         </a>
                     </p>
@@ -159,7 +159,7 @@
                 <hr>
 
                 <h1 class="title is-spaced">Popular Neighborhoods</h1>
-                <h3 class="subtitle is-5">Neighborhoods that average the most popular reviews.</h3>
+                <h3 class="subtitle is-5">Neighborhoods that average the most positive reviews.</h3>
 
                 <!--Create list of popular neighborhoods with Vuejs-->
                 <div id="neighborhood-list">
@@ -169,7 +169,7 @@
                         </div>
                         <div class="level-right">
                             <p class="field">
-                                <a class="button is-primary" href="#weekly-avg-income" v-on:click="submitLocation(n)">
+                                <a class="button is-outlined is-primary" href="#locate-me" v-on:click="submitLocation(n)">
                                     <span class="icon">
                                     <i class="fa fa-map-marker"></i>
                                     </span>
