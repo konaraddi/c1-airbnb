@@ -175,12 +175,12 @@
                                     </span>
                                     <span>{{n.lat}}&deg; N, {{n.long}}&deg; W</span>
                                 </a>
-                                <a class="button is-link" href="https://twitter.com/hashtag/{{hashtag}}?lang=en" target="_blank" rel="noopener">
+                                <a class="button is-link" v-bind:href="'https://twitter.com/hashtag/'+n.hashtag+'/?lang=en'" target="_blank" rel="noopener">
                                     <span class="icon">
                                     <i class="fa fa-twitter"></i>
                                     </span>
                                 </a>
-                                <a class="button is-dark" href="https://www.instagram.com/explore/tags/{{hashtag}}/?hl=en" target="_blank" rel="noopener">
+                                <a class="button is-dark" v-bind:href="'https://www.instagram.com/explore/tags/'+n.hashtag+'/?hl=en'" target="_blank" rel="noopener">
                                     <span class="icon">
                                     <i class="fa fa-instagram"></i>
                                     </span>
