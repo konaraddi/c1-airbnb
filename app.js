@@ -29,6 +29,8 @@ Papa.parse("./data/csv/listings.csv", {
 
         // increase loading bar's progress
         increaseProgressBy(25);
+
+        findMostPopularNeighborhoods(data);
         
 	}
 });
@@ -337,7 +339,7 @@ function constructChart3(data){
     increaseProgressBy(25);
 }
 
-var neighborhood_list = new Vue({
+var popular_neighborhood_list = new Vue({
     el: '#neighborhood-list',
     data:{
         "neighborhoods":[
@@ -375,41 +377,6 @@ var neighborhood_list = new Vue({
           "hashtag": "RichmondDistrict",
           "lat": "37.73",
           "long": "122.45"
-        },
-        {
-          "position": "6.",
-          "name": "Marina",
-          "hashtag": "Marina",
-          "lat": "37.77",
-          "long": "122.39"
-        },
-        {
-          "position": "7.",
-          "name": "Cow Hollow",
-          "hashtag": "CowHollow",
-          "lat": "37.77",
-          "long": "122.43"
-        },
-        {
-          "position": "8.",
-          "name": "Pacific Heights",
-          "hashtag": "PacificHeights",
-          "lat": "37.79",
-          "long": "122.44"
-        },
-        {
-          "position": "9.",
-          "name": "Bayview",
-          "hashtag": "Bayview",
-          "lat": "37.73",
-          "long": "122.38"
-        },
-        {
-          "position": "10.",
-          "name": "Visitacion Valley",
-          "hashtag": "VisitacionValley",
-          "lat": "37.71",
-          "long": "122.40"
         }
       ]
     },
@@ -419,3 +386,25 @@ var neighborhood_list = new Vue({
         }
     }
 });
+
+// Determine most popular neighborhoods
+function findMostPopularNeighborhoods(data){
+    
+    // loop thru all listings and find all neighborhoods
+    var neighborhoods_list = [];
+    for(var i = 0; i < data.length - 1; i++){
+        var neighborhood = data[i]["neighbourhood"];
+        if(neighborhoods_list.indexOf(neighborhood) < 0 && neighborhood != "" && neighborhood.length < 25){
+            neighborhoods_list.push(neighborhood);
+        }
+    }
+
+    // find average review score for each neighbourhood
+    var avg_rating_per_neigh = [];
+    for(var j = 0; j < data.length - 1; j++){
+        var neighborhood = data[i]["neighbourhood"];
+        if(neighborhoods_list.indexOf(neighborhood) > -1 && neighborhood != "" && neighborhood.length < 25){
+            // push rating and increment # reviews per neigh
+        }
+    }
+}
