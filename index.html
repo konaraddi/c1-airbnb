@@ -169,7 +169,7 @@
                         </div>
                         <div class="level-right">
                             <p class="field">
-                                <a class="button is-outlined is-primary" href="#locate-me" v-on:click="submitLocation(n)">
+                                <a class="button is-outlined is-primary" href="#locate-me" v-on:click="submitLocation(n); document.getElementById('modal-'+n.hashtag).classList = 'modal is-active'">
                                     <span class="icon">
                                     <i class="fa fa-map-marker"></i>
                                     </span>
@@ -186,7 +186,16 @@
                                     </span>
                                 </a>
                             </p>    
-                        </div>               
+                        </div> 
+                        <div v-bind:id="'modal-'+n.hashtag" class="modal">
+                            <div class="modal-background" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal'"></div>
+                            <div class="modal-content">
+                                <div class="box">
+                                    <h1>{{n.name}}</h1>
+                                </div>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal'"></button>
+                        </div>              
                     </div>
                 </div>
                 
