@@ -169,7 +169,7 @@
                         </div>
                         <div class="level-right">
                             <p class="field">
-                                <a class="button is-outlined is-primary" href="#locate-me" v-on:click="submitLocation(n); document.getElementById('modal-'+n.hashtag).classList = 'modal is-active'">
+                                <a class="button is-primary" href="#locate-me" v-on:click="submitLocation(n); document.getElementById('modal-'+n.hashtag).classList = 'modal is-active'; setMap(n);">
                                     <span class="icon">
                                     <i class="fa fa-map-marker"></i>
                                     </span>
@@ -180,22 +180,26 @@
                                     <i class="fa fa-twitter"></i>
                                     </span>
                                 </a>
-                                <a class="button is-dark" v-bind:href="'https://www.instagram.com/explore/tags/'+n.hashtag+'/?hl=en'" target="_blank" rel="noopener">
+                                <a class="button is-black" v-bind:href="'https://www.instagram.com/explore/tags/'+n.hashtag+'/?hl=en'" target="_blank" rel="noopener">
                                     <span class="icon">
                                     <i class="fa fa-instagram"></i>
                                     </span>
                                 </a>
                             </p>    
                         </div> 
+
+                        <!--Modal with embedded map and info about neighborhood-->
                         <div v-bind:id="'modal-'+n.hashtag" class="modal">
                             <div class="modal-background" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal'"></div>
                             <div class="modal-content">
                                 <div class="box">
-                                    <h1>{{n.name}}</h1>
+                                    <h1 class="title is-spaced">{{n.name}}</h1>
+                                    <div v-bind:id="'map-'+n.hashtag" class="map"></div>
                                 </div>
                             </div>
                             <button class="modal-close is-large" aria-label="close" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal'"></button>
-                        </div>              
+                        </div>    
+
                     </div>
                 </div>
                 
@@ -203,14 +207,15 @@
 
                 <h1 class="title is-spaced">Let's Invest</h1>
                 <h3 class="subtitle is-5">We'll tell you where to invest to maximise your returns.</h3>
-                               
-                <!--Purchase most popular property from the most popular neighborhoods-->
             </div>
         </div>        
     </section>
     
     <!--Font Awesome Icons-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+
+    <!--Google Maps API-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeAe-SViWI4RiawbvzL9QSo5K1x-9c3IA"></script>
 
     <div id="notification" class="has-text-centered notification is-warning">
         <h5 class="subtitle is-5">Hmmm, something went wrong</h5>

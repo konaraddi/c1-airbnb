@@ -433,11 +433,27 @@ var popular_neighborhood_list = new Vue({
                 "long": "122.437",
                 "avg_rating": "81"
             }
-        ]
+        ]   
     },
     methods:{
         submitLocation: function(neighborhood){
             submitLatLongValues(neighborhood.lat,neighborhood.long);
+        },
+        setMap: function(neighborhood){
+    
+            var pos = {
+                lat: Number(neighborhood.lat), 
+                lng: -1*Number(neighborhood.long)
+            };
+            var map = new google.maps.Map(document.getElementById('map-'+neighborhood.hashtag), {
+                zoom: 13,
+                center: pos
+            });
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+
         }
     }
 });

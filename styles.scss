@@ -117,3 +117,12 @@ html{
 @include touch{
 	.span_2_of_2, .span_1_of_2 { width: 100%; }
 }
+
+/*Set size of map of each popular neighborhood (found within the modal)*/
+.modal .map{
+    width: 100%;
+    height: 320px;
+    @include mobile{
+        height: 180px;
+    }
+}
