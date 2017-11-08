@@ -39,7 +39,7 @@ Papa.parse("./data/csv/listings.csv", {
 var notificationMsg = document.getElementById("notification");
 
 // min/max latitudes and longitudes
-var minLat = 37.70692769290489;
+var minLat = 37.680;
 var maxLat = 37.83109278506102;
 var minLong = -122.51149998987212;
 var maxLong = -122.36475851913093;
@@ -339,46 +339,101 @@ function constructChart3(data){
     increaseProgressBy(25);
 }
 
+// Determine most popular neighborhoods by finding the highest averaging review ratings
+function findMostPopularNeighborhoods(data){
+    
+    var neighborhoods_list = [];
+    var avg_rating_per_neigh = [];
+
+    // loop thru all listings and find all neighborhoods
+    for(var i = 0; i < data.length - 1; i++){
+        var neighborhood = data[i]["neighbourhood"];
+        if(neighborhoods_list.indexOf(neighborhood) < 0 && neighborhood != "" && neighborhood.length < 25){
+            neighborhoods_list.push(neighborhood);
+            avg_rating_per_neigh.push({
+                neighborhood: neighborhood,
+                sum_of_scores: 0,
+                number_of_properties: 0
+            });
+        }
+    }
+
+    // find average review score for each neighbourhood
+    for(var j = 0; j < data.length - 1; j++){
+        var neighborhood = data[j]["neighbourhood"];
+        var index = neighborhoods_list.indexOf(neighborhood)
+        if(index > -1){
+            avg_rating_per_neigh[index]= {
+                neighborhood: avg_rating_per_neigh[index].neighborhood,
+                sum_of_scores: avg_rating_per_neigh[index].sum_of_scores + Number(data[j]["review_scores_rating"]),
+                number_of_properties: avg_rating_per_neigh[index].number_of_properties + 1
+            };
+        }
+    }
+
+    for(var k = 0; k < avg_rating_per_neigh.length; k++){
+        avg_rating_per_neigh[k]= {
+            neighborhood: avg_rating_per_neigh[k].neighborhood,
+            avg_rating: Math.round(avg_rating_per_neigh[k].sum_of_scores / avg_rating_per_neigh[k].number_of_properties)
+        };
+    }
+
+    top5_neighborhoods = [];
+    for(var l = 0; l < 5; l++){
+        // just set it to the first neighborhood for now
+        top5_neighborhoods[l] = avg_rating_per_neigh[0];
+
+        // find top 5 neighborhoods, put them in their own array
+        for(var n = 0; n < avg_rating_per_neigh.length; n++){
+            if(avg_rating_per_neigh[n].avg_rating > top5_neighborhoods[l].avg_rating && top5_neighborhoods.indexOf(avg_rating_per_neigh[n]) < 0){
+                top5_neighborhoods[l] = avg_rating_per_neigh[n]
+            }
+        }
+    }
+
+    console.log(top5_neighborhoods);
+}
+
 var popular_neighborhood_list = new Vue({
     el: '#neighborhood-list',
     data:{
         "neighborhoods":[
-        {
-          "position": "1.",
-          "name": "Mission District",
-          "hashtag": "MissionDistrict",
-          "lat": "37.76",
-          "long": "122.41"
-        },
-        {
-          "position": "2.",
-          "name": "Noe Valley",
-          "hashtag": "NoeValley",
-          "lat": "37.75",
-          "long": "122.43"
-        },
-        {
-          "position": "3.",
-          "name": "Balboa Terrace",
-          "hashtag": "BalboaTerrace",
-          "lat": "37.73",
-          "long": "122.45"
-        },
-        {
-          "position": "4.",
-          "name": "Sunnyside",
-          "hashtag": "Sunnyside",
-          "lat": "37.73",
-          "long": "122.44"
-        },
-        {
-          "position": "5.",
-          "name": "Richmond District",
-          "hashtag": "RichmondDistrict",
-          "lat": "37.73",
-          "long": "122.45"
-        }
-      ]
+            {
+                "name": "Daly City",
+                "hashtag": "DalyCity",
+                "lat": "37.688",
+                "long": "122.470",
+                "avg_rating": "95"
+            },
+            {
+                "name": "Mission Terrace",
+                "hashtag": "MissionTerrace",
+                "lat": "37.725",
+                "long": "122.443",
+                "avg_rating": "87"
+            },
+            {
+                "name": "The Castro",
+                "hashtag": "TheCastro",
+                "lat": "37.774",
+                "long": "122.431",
+                "avg_rating": "81"
+            },
+            {
+                "name": "Duboce Triangle",
+                "hashtag": "DuboceTriangle",
+                "lat": "37.768",
+                "long": "122.432",
+                "avg_rating": "81"
+            },
+            {
+                "name": "Fillmore District",
+                "hashtag": "FillmoreDistrict",
+                "lat": "37.787",
+                "long": "122.437",
+                "avg_rating": "81"
+            }
+        ]
     },
     methods:{
         submitLocation: function(neighborhood){
@@ -386,25 +441,3 @@ var popular_neighborhood_list = new Vue({
         }
     }
 });
-
-// Determine most popular neighborhoods
-function findMostPopularNeighborhoods(data){
-    
-    // loop thru all listings and find all neighborhoods
-    var neighborhoods_list = [];
-    for(var i = 0; i < data.length - 1; i++){
-        var neighborhood = data[i]["neighbourhood"];
-        if(neighborhoods_list.indexOf(neighborhood) < 0 && neighborhood != "" && neighborhood.length < 25){
-            neighborhoods_list.push(neighborhood);
-        }
-    }
-
-    // find average review score for each neighbourhood
-    var avg_rating_per_neigh = [];
-    for(var j = 0; j < data.length - 1; j++){
-        var neighborhood = data[i]["neighbourhood"];
-        if(neighborhoods_list.indexOf(neighborhood) > -1 && neighborhood != "" && neighborhood.length < 25){
-            // push rating and increment # reviews per neigh
-        }
-    }
-}
