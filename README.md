@@ -52,27 +52,13 @@ Look for places that are within 0.01 of the user's property's latitude and longi
 This web app has an initial loading bar and a notification that fades in and out when there's an error related to the location service. Hovering on two of the graphs reveals stats.
 
 ### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
-Used the [Vivekn Sentiment Analysis API](http://sentiment.vivekn.com/docs/api/) to determine if a review was positive and its confidence level. For each neighborhood, the Vivekn's results' confidence level for each reivew was summed up, then the divided by the total number of reviews in the corresponding neighborhood. Then they were sorted from greatest to least. This yields a list of neighborhoods averaging the most positive reviews. You can checkout the full list [here](top.txt).
+Identified the top 5 neighborhoods by calculating the average review rating for each neighborhood.
 
 # FAQs
 
 #### What font are you using?
 
 [Inter UI](https://rsms.me/inter/), you should check it out!
-
-#### What's the `sentiment_analysis.py` for?
-
-For accomplishing the **Popular Neighborhoods** objective, where neighborhoods averaging the most positive reviews were discovered and then copied to the web app. It was ran once; it does not run every time the user visits the web app. In fact, it took ~40 minutes for `sentiment_analysis.py` to run, and it only went over 5% of all available reviews because it takes time for the Vivekn Sentiment Analysis API to process requests made to it.
-
-#### Why did you only sample 5% of the reviews to determine the neighborhoods averaging the most positive reviews?
-
-The limiting factor was the Vivekn Sentiment Analysis API. It's a free, public API that drops requests if a user makes too many requests. I made too requests :(
-
-#### What's the [`build.sh`](build.sh) and [`serve.sh`](serve.sh) for?
-
-The `build.sh` is for converting Sass to CSS and then removing unused CSS and unnecessary white space.
-
-The `serve.sh` is for whipping up a web server to test on.
 
 #### Why is your "Getting Started" below the "FAQs"?
 

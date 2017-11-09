@@ -99,15 +99,13 @@ function submitLatLongValues(userLat, userLong){
 
 function inputUserLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(inputPosition, onGeoError);
+        navigator.geolocation.getCurrentPosition(inputPosition, function (event) {
+            // if something goes wrong
+            showNotification(event.message);
+        });
     } else {
         showNotification("Geolocation is not supported by this browser.")
     }
-}
-
-// If something has gone wrong with the geolocation request
-function onGeoError(event) {
-    showNotification(event.message);
 }
 
 function inputPosition(position) {
@@ -133,7 +131,7 @@ function constructChart1(data){
     // will be used for x axis
     var years = [];
     // 2008 ---> 2017 correspond to 0 ---> 9 in array
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < 5; i++){
         years.push(2008 + i); 
         avg_reviews.push(null);   
     }
@@ -379,7 +377,7 @@ function findMostPopularNeighborhoods(data){
     }
 
     top5_neighborhoods = [];
-    for(var l = 0; l < 5; l++){
+    for(var l = 0; l < 10; l++){
         // just set it to the first neighborhood for now
         top5_neighborhoods[l] = avg_rating_per_neigh[0];
 
@@ -403,42 +401,49 @@ var popular_neighborhood_list = new Vue({
                 "hashtag": "DalyCity",
                 "lat": "37.688",
                 "long": "122.470",
-                "avg_rating": "95"
+                "avg_rating": "95",
+                "weekly_avg_income": "$1,414",
+                "ideal_price_per_night": "$202"
             },
             {
                 "name": "Mission Terrace",
                 "hashtag": "MissionTerrace",
                 "lat": "37.725",
                 "long": "122.443",
-                "avg_rating": "87"
+                "avg_rating": "87",
+                "weekly_avg_income": "$1,435",
+                "ideal_price_per_night": "$205"
             },
             {
                 "name": "The Castro",
                 "hashtag": "TheCastro",
                 "lat": "37.774",
                 "long": "122.431",
-                "avg_rating": "81"
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,470",
+                "ideal_price_per_night": "$210"
             },
             {
                 "name": "Duboce Triangle",
                 "hashtag": "DuboceTriangle",
                 "lat": "37.768",
                 "long": "122.432",
-                "avg_rating": "81"
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,484",
+                "ideal_price_per_night": "$212"
             },
             {
                 "name": "Fillmore District",
                 "hashtag": "FillmoreDistrict",
                 "lat": "37.787",
                 "long": "122.437",
-                "avg_rating": "81"
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,505",
+                "ideal_price_per_night": "$215"
             }
         ]   
     },
     methods:{
-        submitLocation: function(neighborhood){
-            submitLatLongValues(neighborhood.lat,neighborhood.long);
-        },
         setMap: function(neighborhood){
     
             var pos = {
