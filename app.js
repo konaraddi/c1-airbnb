@@ -30,7 +30,8 @@ Papa.parse("./data/csv/listings.csv", {
         // increase loading bar's progress
         increaseProgressBy(25);
 
-        findMostPopularNeighborhoods(data);
+        // find top 10 neighborhoods
+        findMostPopularNeighborhoods(data, 10);
         
 	}
 });
@@ -272,12 +273,32 @@ function constructChart2(data){
 // PRICE vs BEDROOMS
 function constructChart3(data){
 
-    var bedrooms_price= [];
+    // let index represent the number of bedrooms
+    var bedrooms_avg_price= [];
     for(var i = 0; i < data.length - 1; i++){
-        var x = Number(data[i]["bedrooms"])
-        var y = Number(data[i]["price"].substring(1,data[i]["price"].length));
-        bedrooms_price.push({x, y});
+        var num_of_bedrooms = Number(data[i]["bedrooms"])
+        var price = Number(data[i]["price"].substring(1,data[i]["price"].length));
+        if(!isNaN(price)){
+            if(bedrooms_avg_price[num_of_bedrooms] == undefined){
+                bedrooms_avg_price[num_of_bedrooms] = {
+                    x: num_of_bedrooms,
+                    y: price,
+                    z: 1
+                }
+            }else{
+                bedrooms_avg_price[num_of_bedrooms].y += price;
+                bedrooms_avg_price[num_of_bedrooms].z += 1;
+            }
+        }
     }
+
+    // find the average price per bedroom
+    for(var j = 0; j < bedrooms_avg_price.length; j++){
+        // avg = total / num
+        bedrooms_avg_price[j].y = Math.round(bedrooms_avg_price[j].y / bedrooms_avg_price[j].z);
+    }
+
+    console.log(bedrooms_avg_price);
 
     //display a scatter plot
     var ctx = document.getElementById('bedrooms-price-plot').getContext('2d');
@@ -292,8 +313,8 @@ function constructChart3(data){
                 backgroundColor: 'rgb(34,49,63)',
                 borderColor: 'rgb(34,49,63)',
                 fill: false,
-                showLine: false,
-                data: bedrooms_price
+                showLine: true,
+                data: bedrooms_avg_price
             }]
         },
 
@@ -301,7 +322,7 @@ function constructChart3(data){
         options: {
             elements:{
                 point:{
-                    pointStyle: 'cross'
+                    pointStyle: 'circle'
                 }
             },
             legend:{
@@ -311,13 +332,13 @@ function constructChart3(data){
                 yAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Price'
+                        labelString: 'Average Price (USD)'
                     }
                 }],
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Bedrooms'
+                        labelString: 'Number of Bedrooms'
                     },
                     ticks:{
                         max: 7
@@ -338,7 +359,7 @@ function constructChart3(data){
 }
 
 // Determine most popular neighborhoods by finding the highest averaging review ratings
-function findMostPopularNeighborhoods(data){
+function findMostPopularNeighborhoods(data, num){
     
     var neighborhoods_list = [];
     var avg_rating_per_neigh = [];
@@ -377,7 +398,7 @@ function findMostPopularNeighborhoods(data){
     }
 
     top5_neighborhoods = [];
-    for(var l = 0; l < 10; l++){
+    for(var l = 0; l < num; l++){
         // just set it to the first neighborhood for now
         top5_neighborhoods[l] = avg_rating_per_neigh[0];
 
