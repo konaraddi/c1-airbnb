@@ -1,3 +1,6 @@
+// set animation duration for charts
+var chartAnimationDuration = 0;
+
 // initial progress loading bar (before the app loads this is displayed)
 var progress = document.getElementById("loading-bar");
 // the progress element's value is incremented
@@ -31,7 +34,7 @@ Papa.parse("./data/csv/listings.csv", {
         increaseProgressBy(25);
 
         // find top 10 neighborhoods
-        findMostPopularNeighborhoods(data, 10);
+        // findMostPopularNeighborhoods(data, 10);
         
 	}
 });
@@ -48,18 +51,12 @@ var maxLong = -122.36475851913093;
 // will look for places within reasonable range of latitude and longitude
 var withIn = 0.01;
 
-function submitLatLongValues(userLat, userLong){
-    if(userLat == undefined || userLong == undefined){
-        var userLat = document.getElementById("lat-input").value;
-        var userLong = document.getElementById("long-input").value;
-    }
-    if(document.getElementById('lat-input').value != userLat && document.getElementById('long-input').value != userLong){
-        document.getElementById('lat-input').value = userLat;
-        document.getElementById('long-input').value = userLong;
-    }
+function submitLatLongValues(){
+    var userLat = document.getElementById("lat-input").value;
+    var userLong = document.getElementById("long-input").value;
 
     // if user types in positive longitude, flip it to negative 
-    // (since Airbnb data uses negative longitudinal values)
+    // (since Airbnb data uses negative longitudinal values but some use positive, depending on whether it's from the W or E)
     if(userLong > 0){
         userLong -= 2*userLong;
     }
@@ -107,12 +104,12 @@ function inputUserLocation() {
     } else {
         showNotification("Geolocation is not supported by this browser.")
     }
-}
 
-function inputPosition(position) {
-    document.getElementById("lat-input").value = position.coords.latitude
-    document.getElementById("long-input").value = position.coords.longitude;
-    submitLatLongValues();
+    function inputPosition(position) {
+        document.getElementById("lat-input").value = position.coords.latitude
+        document.getElementById("long-input").value = position.coords.longitude;
+        submitLatLongValues();
+    }
 }
 
 function showNotification(msg){
@@ -120,7 +117,7 @@ function showNotification(msg){
     notificationMsg.className = "has-text-centered notification is-warning show";
     setTimeout(function(){
         notificationMsg.className = "has-text-centered notification is-warning";
-    }, 5000);
+    }, 4000);
 }
 
 // GRAPH
@@ -199,7 +196,7 @@ function constructChart1(data){
                 }]
             },
             animation:{
-                duration: 0
+                duration: chartAnimationDuration
             }, 
         }
     });
@@ -260,7 +257,7 @@ function constructChart2(data){
                 }]
             },
             animation:{
-                duration: 0
+                duration: chartAnimationDuration
             }       
         }
     });
@@ -345,11 +342,8 @@ function constructChart3(data){
                     }
                 }]
             },
-            tooltips:{
-                enabled: false
-            },
             animation:{
-                duration: 0
+                duration: chartAnimationDuration
             }     
         }
     });
