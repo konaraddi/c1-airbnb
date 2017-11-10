@@ -132,7 +132,7 @@ function constructChart1(data){
     // will be used for x axis
     var years = [];
     // 2008 ---> 2017 correspond to 0 ---> 9 in array
-    for(var i = 0; i < 5; i++){
+    for(var i = 0; i < 10; i++){
         years.push(2008 + i); 
         avg_reviews.push(null);   
     }
