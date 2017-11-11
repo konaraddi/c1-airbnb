@@ -17,13 +17,14 @@ function increaseProgressBy(increment){
 
 // grab data from CSV file, build charts from data, increment progress bar
 // and initialize Vue instance of list of best properties
-Papa.parse("./data/csv/listings.csv", {
+var data = null;
+Papa.parse("./data/csv/listings_slim.csv", {
     header: true,
     download: true,
     dynamicTyping: true,
 	complete: function(results) {
 
-        var data = results["data"];
+        data = results["data"];
 
         constructChart1(data);
         constructChart2(data);
