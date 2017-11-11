@@ -37,24 +37,41 @@ Papa.parse("./data/csv/listings_slim.csv", {
         // findMostPopularNeighborhoods(data, 10);
 
         best_properties = getBestProperties(data);
+        console.log(best_properties)
         best_properties_list = new Vue({
             el: "#best-properties-list",
             data: {
-                investment: 500000,
+                investment: 100000000,
                 "properties":[],
                 next_property: 0,
-                disabled: false,
                 totalCost: best_properties[0].estimated_cost
             },
             computed: {
                 daysUntilBreakEven: function(){
-                    return 0;
+                    var totalIncurredCost = 0;
+                    var incomePerNight = 0;
+                    for(var i = 0; i < best_properties.length; i++){
+                        totalIncurredCost += best_properties[i].estimated_cost;
+                        if(this.investment - totalIncurredCost <= 0){
+                            break;
+                        }    
+                        console.log(incomePerNight)
+                        incomePerNight += best_properties[i].price;
+                    }
+                    console.log(totalIncurredCost)
+                    return Math.round(totalIncurredCost / incomePerNight);
                 },
                 canPurchaseNext: function(){
                     if(this.totalCost + best_properties[this.next_property].estimated_cost > this.investment){
                         return false;
                     }
                     return true;
+                },
+                disabled: function(){
+                    if(!this.canPurchaseNext){
+                        return true;
+                    }
+                    return false;
                 }
             },
             methods:{
@@ -62,6 +79,7 @@ Papa.parse("./data/csv/listings_slim.csv", {
                     this.properties.push({
                         id: this.next_property,
                         name: best_properties[this.next_property].name,
+                        price: best_properties[this.next_property].price,
                         picture_url: best_properties[this.next_property].picture_url,
                         listing_url: best_properties[this.next_property].listing_url,
                         estimated_cost: best_properties[this.next_property].estimated_cost,
@@ -71,14 +89,19 @@ Papa.parse("./data/csv/listings_slim.csv", {
                     this.totalCost += best_properties[this.next_property].estimated_cost;
                     
                     this.next_property++;
+                },
+                truncate: function(string, max){
+                    if (string.length > max)
+                       return string.substring(0, max)+'...';
+                    else
+                       return string;
                 }
             },
             created: function(){
-                for(i = 0; i < 4; i++){
+                for(i = 0; i < 3; i++){
                     if(this.canPurchaseNext){
                         this.showAnotherProperty();
                     }else{
-                        this.disabled = true;
                         break;
                     }
                 }
@@ -527,12 +550,12 @@ function getBestProperties(data){
 
     // median list price per sq. ft. in San Francisco
     // https://www.zillow.com/san-francisco-ca/home-values/
-    var price_per_sqft = 978;
+    var price_per_sqft = 1048;
 
     var best_properties = [];
     for(var i = 0; i < data.length - 1; i++){
         
-        var name = truncate(data[i]["name"], 24);
+        var name = data[i]["name"];
         var listing_url = data[i]["listing_url"]
         var picture_url = data[i]["picture_url"];
         var number_of_reviews = Number(data[i]["number_of_reviews"]);
@@ -546,6 +569,7 @@ function getBestProperties(data){
             
             best_properties.push({
                 name: name,
+                price: price,
                 picture_url: picture_url,
                 listing_url: listing_url,
                 score: number_of_reviews * rating * price / estimated_cost,
@@ -562,10 +586,3 @@ function getBestProperties(data){
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
-function truncate(string, max){
-    if (string.length > max)
-       return string.substring(0, max)+'...';
-    else
-       return string;
- }

@@ -241,7 +241,7 @@
                     
                     <div class="box level" v-for="p in properties">
                         <div class="level-left">
-                            <h1 class="title is-5 is-spaced">{{p.name}}</h1>
+                            <h1 class="title is-5 is-spaced">{{truncate(p.name,30)}}</h1>
                         </div>
                         <div class="level-right">
                             <p class="field">
@@ -250,12 +250,12 @@
                                         <i class="fa fa-image"></i>
                                     </span>  
                                     <span>
-                                            Image
+                                            {{p.display_cost}}
                                     </span>
                                 </a>
                                 <a class="button is-dark is-outlined" v-bind:href="p.listing_url" target="_blank">
                                     <span>
-                                            {{p.display_cost}}
+                                            ${{p.price}} per night
                                     </span>
                                     <span class="icon">
                                         <i class="fa fa-external-link"></i>
@@ -279,7 +279,7 @@
                         </div>  
 
                     </div>
-                    <a class="button is-dark" style="width: 100%;" v-on:click="disabled?'':showAnotherProperty()" v-bind:disabled = "disabled ? true : false">Show me another property</a>
+                    <a class="button is-dark" style="width: 100%;" v-on:click="disabled?'':showAnotherProperty()" v-bind:disabled = "disabled ? true : false">Show me more</a>
                 </div>
 
             </div>
