@@ -40,16 +40,22 @@ Papa.parse("./data/csv/listings_slim.csv", {
         best_properties_list = new Vue({
             el: "#best-properties-list",
             data: {
-                "properties":[
-                    {
-                        id: 0,
-                        name: best_properties[0].name,
-                        picture_url: best_properties[0].picture_url,
-                        listing_url: best_properties[0].listing_url,
-                        estimated_cost: '$' + numberWithCommas(best_properties[0].estimated_cost)
+                investment: 500000,
+                "properties":[],
+                next_property: 0,
+                disabled: false,
+                totalCost: best_properties[0].estimated_cost
+            },
+            computed: {
+                daysUntilBreakEven: function(){
+                    return 0;
+                },
+                canPurchaseNext: function(){
+                    if(this.totalCost + best_properties[this.next_property].estimated_cost > this.investment){
+                        return false;
                     }
-                ],
-                next_property: 5
+                    return true;
+                }
             },
             methods:{
                 showAnotherProperty: function(){
@@ -58,14 +64,23 @@ Papa.parse("./data/csv/listings_slim.csv", {
                         name: best_properties[this.next_property].name,
                         picture_url: best_properties[this.next_property].picture_url,
                         listing_url: best_properties[this.next_property].listing_url,
-                        estimated_cost: '$' + numberWithCommas(best_properties[this.next_property].estimated_cost)
+                        estimated_cost: best_properties[this.next_property].estimated_cost,
+                        display_cost: '$' + numberWithCommas(best_properties[this.next_property].estimated_cost)
                     });
+
+                    this.totalCost += best_properties[this.next_property].estimated_cost;
+                    
                     this.next_property++;
                 }
             },
             created: function(){
                 for(i = 0; i < 4; i++){
-                    this.showAnotherProperty();
+                    if(this.canPurchaseNext){
+                        this.showAnotherProperty();
+                    }else{
+                        this.disabled = true;
+                        break;
+                    }
                 }
             }
         });
