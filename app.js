@@ -15,16 +15,15 @@ function increaseProgressBy(increment){
     }
 }
 
-// contains data from listings.csv
-var data = null;
-// grab data from CSV file and build charts from it
+// grab data from CSV file, build charts from data, increment progress bar
+// and initialize Vue instance of list of best properties
 Papa.parse("./data/csv/listings.csv", {
     header: true,
     download: true,
     dynamicTyping: true,
 	complete: function(results) {
 
-        data = results["data"];
+        var data = results["data"];
 
         constructChart1(data);
         constructChart2(data);
@@ -35,9 +34,115 @@ Papa.parse("./data/csv/listings.csv", {
 
         // find top 10 neighborhoods
         // findMostPopularNeighborhoods(data, 10);
+
+        best_properties = getBestProperties(data);
+        best_properties_list = new Vue({
+            el: "#best-properties-list",
+            data: {
+                "properties":[
+                    {
+                        id: 0,
+                        name: best_properties[0].name,
+                        picture_url: best_properties[0].picture_url,
+                        listing_url: best_properties[0].listing_url,
+                        estimated_cost: '$' + numberWithCommas(best_properties[0].estimated_cost)
+                    }
+                ],
+                next_property: 5
+            },
+            methods:{
+                showAnotherProperty: function(){
+                    this.properties.push({
+                        id: this.next_property,
+                        name: best_properties[this.next_property].name,
+                        picture_url: best_properties[this.next_property].picture_url,
+                        listing_url: best_properties[this.next_property].listing_url,
+                        estimated_cost: '$' + numberWithCommas(best_properties[this.next_property].estimated_cost)
+                    });
+                    this.next_property++;
+                }
+            },
+            created: function(){
+                for(i = 0; i < 4; i++){
+                    this.showAnotherProperty();
+                }
+            }
+        });
         
 	}
 });
+
+
+var popular_neighborhood_list = new Vue({
+    el: '#neighborhood-list',
+    data:{
+        "neighborhoods":[
+            {
+                "name": "Daly City",
+                "hashtag": "DalyCity",
+                "lat": "37.688",
+                "long": "122.470",
+                "avg_rating": "95",
+                "weekly_avg_income": "$1,414",
+                "ideal_price_per_night": "$202"
+            },
+            {
+                "name": "Mission Terrace",
+                "hashtag": "MissionTerrace",
+                "lat": "37.725",
+                "long": "122.443",
+                "avg_rating": "87",
+                "weekly_avg_income": "$1,435",
+                "ideal_price_per_night": "$205"
+            },
+            {
+                "name": "The Castro",
+                "hashtag": "TheCastro",
+                "lat": "37.774",
+                "long": "122.431",
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,470",
+                "ideal_price_per_night": "$210"
+            },
+            {
+                "name": "Duboce Triangle",
+                "hashtag": "DuboceTriangle",
+                "lat": "37.768",
+                "long": "122.432",
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,484",
+                "ideal_price_per_night": "$212"
+            },
+            {
+                "name": "Fillmore District",
+                "hashtag": "FillmoreDistrict",
+                "lat": "37.787",
+                "long": "122.437",
+                "avg_rating": "81",
+                "weekly_avg_income": "$1,505",
+                "ideal_price_per_night": "$215"
+            }
+        ]   
+    },
+    methods:{
+        setMap: function(neighborhood){
+    
+            var pos = {
+                lat: Number(neighborhood.lat), 
+                lng: -1*Number(neighborhood.long)
+            };
+            var map = new google.maps.Map(document.getElementById('map-'+neighborhood.hashtag), {
+                zoom: 13,
+                center: pos
+            });
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+
+        }
+    }
+});        
 
 // notification banner that fades in and out at the bottom of the page when needed
 var notificationMsg = document.getElementById("notification");
@@ -87,9 +192,6 @@ function submitLatLongValues(){
         document.getElementById("ideal-price").innerHTML = "$" + numberWithCommas(idealPricePerNight);
         document.getElementById("weekly-avg-income").innerHTML = "$" + numberWithCommas(weeklyAverageIncome);
         
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
     }else{
         showNotification("Sorry, the location must be in San Francisco.")
     }
@@ -295,8 +397,6 @@ function constructChart3(data){
         bedrooms_avg_price[j].y = Math.round(bedrooms_avg_price[j].y / bedrooms_avg_price[j].z);
     }
 
-    console.log(bedrooms_avg_price);
-
     //display a scatter plot
     var ctx = document.getElementById('bedrooms-price-plot').getContext('2d');
     var chart = new Chart(ctx, {
@@ -391,89 +491,65 @@ function findMostPopularNeighborhoods(data, num){
         };
     }
 
-    top5_neighborhoods = [];
+    var top_neighborhoods = [];
     for(var l = 0; l < num; l++){
         // just set it to the first neighborhood for now
-        top5_neighborhoods[l] = avg_rating_per_neigh[0];
+        top_neighborhoods[l] = avg_rating_per_neigh[0];
 
         // find top 5 neighborhoods, put them in their own array
         for(var n = 0; n < avg_rating_per_neigh.length; n++){
-            if(avg_rating_per_neigh[n].avg_rating > top5_neighborhoods[l].avg_rating && top5_neighborhoods.indexOf(avg_rating_per_neigh[n]) < 0){
-                top5_neighborhoods[l] = avg_rating_per_neigh[n]
+            if(avg_rating_per_neigh[n].avg_rating > top_neighborhoods[l].avg_rating && top_neighborhoods.indexOf(avg_rating_per_neigh[n]) < 0){
+                top_neighborhoods[l] = avg_rating_per_neigh[n]
             }
         }
     }
 
-    console.log(top5_neighborhoods);
+    console.log(top_neighborhoods);
 }
 
-var popular_neighborhood_list = new Vue({
-    el: '#neighborhood-list',
-    data:{
-        "neighborhoods":[
-            {
-                "name": "Daly City",
-                "hashtag": "DalyCity",
-                "lat": "37.688",
-                "long": "122.470",
-                "avg_rating": "95",
-                "weekly_avg_income": "$1,414",
-                "ideal_price_per_night": "$202"
-            },
-            {
-                "name": "Mission Terrace",
-                "hashtag": "MissionTerrace",
-                "lat": "37.725",
-                "long": "122.443",
-                "avg_rating": "87",
-                "weekly_avg_income": "$1,435",
-                "ideal_price_per_night": "$205"
-            },
-            {
-                "name": "The Castro",
-                "hashtag": "TheCastro",
-                "lat": "37.774",
-                "long": "122.431",
-                "avg_rating": "81",
-                "weekly_avg_income": "$1,470",
-                "ideal_price_per_night": "$210"
-            },
-            {
-                "name": "Duboce Triangle",
-                "hashtag": "DuboceTriangle",
-                "lat": "37.768",
-                "long": "122.432",
-                "avg_rating": "81",
-                "weekly_avg_income": "$1,484",
-                "ideal_price_per_night": "$212"
-            },
-            {
-                "name": "Fillmore District",
-                "hashtag": "FillmoreDistrict",
-                "lat": "37.787",
-                "long": "122.437",
-                "avg_rating": "81",
-                "weekly_avg_income": "$1,505",
-                "ideal_price_per_night": "$215"
-            }
-        ]   
-    },
-    methods:{
-        setMap: function(neighborhood){
-    
-            var pos = {
-                lat: Number(neighborhood.lat), 
-                lng: -1*Number(neighborhood.long)
-            };
-            var map = new google.maps.Map(document.getElementById('map-'+neighborhood.hashtag), {
-                zoom: 13,
-                center: pos
-            });
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map
-            });
+function getBestProperties(data){
 
+    // median list price per sq. ft. in San Francisco
+    // https://www.zillow.com/san-francisco-ca/home-values/
+    var price_per_sqft = 978;
+
+    var best_properties = [];
+    for(var i = 0; i < data.length - 1; i++){
+        
+        var name = truncate(data[i]["name"], 24);
+        var listing_url = data[i]["listing_url"]
+        var picture_url = data[i]["picture_url"];
+        var number_of_reviews = Number(data[i]["number_of_reviews"]);
+        var rating = Number(data[i]["review_scores_rating"]);
+        var price = Number(data[i]["price"].substring(1,data[i]["price"].length));
+        var sqft = Number(data[i]["square_feet"]);
+
+        if(name.length > 0 && picture_url.length > 0 && number_of_reviews > 0 && rating > 0 && price > 0 && sqft > 50 && listing_url.length > 0){
+
+            var estimated_cost = sqft * price_per_sqft;
+            
+            best_properties.push({
+                name: name,
+                picture_url: picture_url,
+                listing_url: listing_url,
+                score: number_of_reviews * rating * price / estimated_cost,
+                estimated_cost: estimated_cost 
+            });
+                
         }
     }
-});
+
+    // sorts the properties by highest to lowest score
+    return best_properties.sort(function(a,b) {return (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0);} );    
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function truncate(string, max){
+    if (string.length > max)
+       return string.substring(0, max)+'...';
+    else
+       return string;
+ }

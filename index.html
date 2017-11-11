@@ -172,7 +172,7 @@
                         </div>
                         <div class="level-right">
                             <p class="field">
-                                <a class="button is-primary" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal is-active'; setMap(n);">
+                                <a class="button is-primary is-outlined" v-on:click="document.getElementById('modal-'+n.hashtag).classList = 'modal is-active'; setMap(n);">
                                     <span class="icon">
                                     <i class="fa fa-map-marker"></i>
                                     </span>
@@ -232,8 +232,51 @@
                 <hr>
                 
                 <h1 class="title is-spaced">Let's Invest</h1>
-                <h3 class="subtitle is-5">Take a look at the properties worth buying.</h3>
+                <h3 class="subtitle is-5">Take a look at the properties worth purchasing.</h3>
                 
+                <div id="best-properties-list">
+                    <div class="box level" v-for="p in properties">
+                        <div class="level-left">
+                            <h1 class="title is-5 is-spaced">{{p.name}}</h1>
+                        </div>
+                        <div class="level-right">
+                            <p class="field">
+                                <a class="button is-primary is-outlined"  v-on:click="document.getElementById('modal-'+p.id).classList = 'modal is-active'">
+                                    <span class="icon">
+                                        <i class="fa fa-image"></i>
+                                    </span>  
+                                    <span>
+                                            Image
+                                    </span>
+                                </a>
+                                <a class="button is-dark is-outlined" v-bind:href="p.listing_url" target="_blank">
+                                    <span>
+                                            {{p.estimated_cost}}
+                                    </span>
+                                    <span class="icon">
+                                        <i class="fa fa-external-link"></i>
+                                    </span>  
+                                </a>
+                            </p>
+                        </div> 
+
+                        <!--Modal with picture of property-->
+                        <div v-bind:id="'modal-'+p.id" class="modal">
+                            <div class="modal-background" v-on:click="document.getElementById('modal-'+p.id).classList = 'modal'"></div>
+                            <div class="modal-content">
+                                <div class="box">
+                                    <h1 class="title is-5 is-spaced">{{p.name}}</h1>
+                                    <figure class="image">
+                                        <img v-bind:src="p.picture_url"></img>
+                                    </figure>
+                                </div>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close" v-on:click="document.getElementById('modal-'+p.id).classList = 'modal'"></button>
+                        </div>  
+
+                    </div>
+                    <a class="button is-dark" style="width: 100%;" v-on:click="showAnotherProperty()">Show me another property</a>
+                </div>
 
             </div>
         </div>        
