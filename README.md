@@ -22,14 +22,14 @@ https://www.mindsumo.com/contests/airbnb-sf
 # Objectives 
 
 ### Main Objectives
-- [X] **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
-- [X] **Price estimation**: Given the geo-location (latitude and longitude) of a new property, estimate the weekly average income the homeowner can make with Airbnb.
-- [X] **Bookings optimization**: Given the geo-location (latitude and longitude) of a property, what is the ideal price per night that will yield maximum bookings.
+- **Visualize the data**: Graph some (any 3) interesting metrics, maps, or trends from the dataset.
+- **Price estimation**: Given the geo-location (latitude and longitude) of a new property, estimate the weekly average income the homeowner can make with Airbnb.
+- **Bookings optimization**: Given the geo-location (latitude and longitude) of a property, what is the ideal price per night that will yield maximum bookings.
 
 ### Bonus Objectives
-- [X] **Animate**: Add an animation to your visualization.
-- [ ] **Investment**: If I have $100 million to invest, where in San Francisco should I buy properties so I can maximize my returns with Airbnb? When will I break even?
-- [X] **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
+- **Animate**: Add an animation to your visualization.
+- **Investment**: If I have $100 million to invest, where in San Francisco should I buy properties so I can maximize my returns with Airbnb? When will I break even?
+- **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 
 # How objectives were completed
 
@@ -39,7 +39,7 @@ Created 3 graphs with Chartsjs:
     * The longer a host has been a host, the more reviews they tend to have.
 * Review Score Rating vs Square Feet
     * Bigger places doesn't necessarily mean better ratings
-* Price vs Bedrooms
+* Average Price vs Bedrooms
     * More bedrooms doesn't always mean high prices. In fact, most hosts have a 0-3 bedrooms on their property.
 
 ### **Price estimation**: Given the geo-location (latitude and longitude) of a new property, estimate the weekly average income the homeowner can make with Airbnb.
@@ -49,10 +49,16 @@ Look for places that are within 0.01 of the user's property's latitude and longi
 Look for places that are within 0.01 of the user's property's latitude and longitude, then took the average of the places' prices.
 
 ### **Animate**: Add an animation to your visualization.
-This web app has an initial loading bar and a notification that fades in and out when there's an error related to the location service. Hovering on two of the graphs reveals stats.
+* Loading screen
+* Notification that fades in and out at the bottom of the screen when there's an error related to the location service
+* Hovering on a data point on each graph reveals a tooltip detailing the data.
 
 ### **Popularity**: Can you identify the neighborhood that averages the most positive reviews?
 Identified the top 5 neighborhoods by calculating the average review rating for each neighborhood.
+
+### **Investment**: If I have $100 million to invest, where in San Francisco should I buy properties so I can maximize my returns with Airbnb? When will I break even?
+
+
 
 # FAQs
 
@@ -62,11 +68,11 @@ Identified the top 5 neighborhoods by calculating the average review rating for 
 
 #### Why is your "Getting Started" below the "FAQs"?
 
-Because I don't expect many people to use this project in their own projects. It's really there for me to know what's up if I come back to this project.
+I don't expect many people to use this project in their own projects. It's really there for me to know what's up if I come back to this project. So it's low priority for those just checking out the project.
 
 # Getting Started
 
 * Run `npm install` to install the necessary dependencies
 * `npm start` will whip up a non-caching development server to test
-* `npm run build` will convert Sass to CSS and compress the CSS
+* `npm run build` will convert Sass to CSS and clean the CSS
 * Checkout the [package.json](package.json) file to edit these commands
