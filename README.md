@@ -1,11 +1,13 @@
 # CapitalOne Challenge (for Winter Summit 2018)
 #### built by [Omkar Konaraddi](https://konaraddio.github.io/)
 
-This submission was accepted.
+This was a winning submission. ~450 applied for the summit. 40 were accepted.
+
+Challenge: https://www.mindsumo.com/contests/airbnb-sf
 
 Submission: https://konaraddio.github.io/c1-airbnb
 
-Challenge: https://www.mindsumo.com/contests/airbnb-sf
+![Screenshot of c1-airbnb](screenshot.png)
 
 # Table of Contents
 * [Built with...](#built-with)
