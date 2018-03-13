@@ -1,5 +1,5 @@
 # CapitalOne Challenge (for Winter Summit 2018)
-#### built by [Omkar Konaraddi](https://konaraddio.github.io/)
+#### built by [Omkar Konaraddi](https://konaraddio.com/)
 
 This was a winning submission. ~450 applied for the summit. 40 were accepted.
 
